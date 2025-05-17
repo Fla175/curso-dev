@@ -1,6 +1,6 @@
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=17&pause=1000&color=16A3C7&random=false&width=460&height=40&lines=Hello%2C+My+name+is+Flávio+F.+Pomin!+%F0%9F%91%BE)](https://git.io/typing-svg)
 
-<p align="left"> I'm learning HTML, CSS, Bootstrap, JS, Node.JS, ECMAScript, PHP, and Figma. I'm in <strong>Secondary School</strong> right now, and I'm helping with the front-end at MegaNuv, a <strong>Cloud Computing</strong> company.</p>
+<p align="left"> Currently I'm learning SQL and MariaDB. I have some experience in HTML, CSS, JS, NodeJS, Bootstrap, ecmaScript (using Babel), PHP, POO, Markdown and figma. I use github codespaces to edit my projects and learning codes. I'm in <strong>Secondary School</strong> right now, and I'm working at MegaNuv, a <strong>Cloud Computing</strong> company.</p>
 
 <hr>
 
@@ -11,14 +11,14 @@
 <hr>
 
 <h3 align="left">Nationality</h3>
-<h4>Brazilian 🇧🇷</h4>
+<h4>Brazilian 🇧🇷🇧🇷🇧🇷🇧🇷🇧🇷🇧🇷🇧🇷</h4>
 
 <hr>
 
 <h3 align="left">My Stack</h3>
 
-<div align="left">
- <img src="https://skillicons.dev/icons?i=devto,html,css,bootstrap,js,nodejs,babel,php,github,vscode,figma" /> 
+<div align="center">
+ <img src="https://skillicons.dev/icons?i=devto,html,css,bootstrap,js,nodejs,babel,php,github,figma" /> 
 </div>
 
 <hr>
