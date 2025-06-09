@@ -1,0 +1,26 @@
+<filmes>
+    <filme id="1">
+        <titulo>O Senhor dos Anéis: O Retorno do Rei</titulo>
+        <resumo>Gandalf e Aragorn lideram o Mundo dos Homens contra o exército de Sauron para distrair o inimigo, enquanto Frodo e Sam se aproximam da Montanha da Perdição com o Um Anel.</resumo>
+        <genero>Aventura</genero>
+        <genero>Fantasia</genero>
+        <elenco>
+            <ator>Elijah Wood</ator>
+            <ator>Ian McKellen</ator>
+            <ator>Viggo Mortensen</ator>
+        </elenco>
+        <dataLancamento pais='EUA'>17 de dezembro de 2003</dataLancamento>
+    </filme>
+    <filme id="2">
+        <titulo>Interestelar</titulo>
+        <resumo>Com a Terra morrendo, um grupo de exploradores viaja por um buraco de minhoca em busca de um novo lar para a humanidade. Um épico de ficção científica sobre amor, tempo e sacrifício.</resumo>
+        <genero>Ficção científica</genero>
+        <genero>Drama</genero>
+        <elenco>
+            <ator>Matthew McConaughey</ator>
+            <ator>Anne Hathaway</ator>
+            <ator>Jessica Chastain</ator>
+        </elenco>
+        <dataLancamento pais='EUA'>7 de novembro de 2014</dataLancamento>
+    </filme>
+</filmes>
