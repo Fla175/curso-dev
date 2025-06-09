@@ -1,0 +1,1 @@
+A aba de SQL não era necessária, pois todas as queries SQL são gerenciadas diretamente na extensão "Database Client".
