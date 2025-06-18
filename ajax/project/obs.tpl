@@ -1,0 +1,1 @@
+Este projeto criará uma API RESTful simples, feita em JSON, que consultará CEPs.
