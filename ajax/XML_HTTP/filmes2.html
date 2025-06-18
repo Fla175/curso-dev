@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Filmes</title>
+
+    <!-- Link para Bootstrap via CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <script src="xmltojson.js"></script>
+    <script>
+        function carregarFilmes() {
+            let JSON = new XMLHttpRequest();
+            xhr.open('GET', 'https://legendary-garbanzo-7v76grwv5pgcwwx6-5501.app.github.dev/ajax/XML_HTTP/filmes.json');
+
+            // xhr.onreadystatechange = () => {
+                 if (JSON.readyState === 4 && JSON.status === 200) {
+                    let JSONFilms = XMLHttp.responseText;
+                    console.log(JSONFilms);
+
+                    let objJSONFilms = JSON.parse(JSONFilms);
+
+                    for (let i in objJSONFilms.filmes) {
+
+                        let item = jsonFilmes.filmes['i'];
+
+                        console.log(item);
+                        
+
+                        let divRow = document.createElement('div');
+                        divRow.className = 'row';
+
+                        let divCol = document.createElement('div');
+                        divCol.className = 'col';
+
+                        let p1 = document.createElement('p');
+                        p1.innerHTML = `<strong>Título:</strong> ${item.titulo}`;
+
+                        let p2 = document.createElement('p');
+                        p2.innerHTML = `<strong>Resumo:</strong> ${item.resumo}`;
+
+                        let genero = '';
+                        for (let g in item.generos) {
+                            if (genero) genero += ', ';
+
+                            genero += item.generos[g].genero;
+                        }
+
+                        let p3 = document.createElement('p');
+                        p3.innerHTML = `<strong>Gênero:</strong> ${genero}`;
+
+                        let elenco = '';
+                        for (let el in item.elenco) {
+                            if (elenco) elenco += ', ';
+
+                            elenco += item.elenco[el].ator;
+                        }
+
+                        let p4 = document.createElement('p');
+                        p4.innerHTML = `<strong>Elenco:</strong> ${elenco}`;
+
+                        let p5 = document.createElement('p');
+                        p5.innerHTML = `<strong>Data do lançamento:</strong> ${item.dataLancamento.data || ' (' || item.dataLancamento.pais || ')'}`;
+
+                        let hr = document.createElement('hr');
+
+                        divRow.appendChild(divCol);
+                        divCol.appendChild(p1);
+                        divCol.appendChild(p2);
+                        divCol.appendChild(p3);
+                        divCol.appendChild(p4);
+                        divCol.appendChild(p5);
+                        divCol.appendChild(hr);
+
+                        document.getElementById('lista').appendChild(divRow);
+                    }
+
+                    // <div class="row">
+                    //     <div class="col">
+                    //         <p><strong>Título:</strong> Oi</p>
+                    //         <p><strong>Resumo:</strong> Oi</p>
+                    //         <p><strong>Gênero:</strong> Oi</p>
+                    //         <p><strong>Elenco:</strong> Oi</p>
+                    //         <p><strong>Data de lançamento:</strong> Oi</p>
+                    //         <hr>
+                    //         <p><strong>Título:</strong> Oi</p>
+                    //         <p><strong>Resumo:</strong> Oi</p>
+                    //         <p><strong>Gênero:</strong> Oi</p>
+                    //         <p><strong>Elenco:</strong> Oi</p>
+                    //         <p><strong>Data de lançamento:</strong> Oi</p>
+                    //         <hr>
+                    //     </div>
+                    // </div>
+                }
+
+                if (xhr.readyState === 4 && xhr.status === 404) {
+                    // wow
+                }
+            }
+
+            xhr.send();
+        
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light mb-4">
+        <div class="container">
+            <div class="navbar-brand mb-0 h1">
+                <h3>Catálogo de Filmes</h3>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container id="lista">
+        <div class="row mb-5">
+            <div class="col">
+                <button type="button" class="btn btn-success" onclick="getFilms()">Listar Filmes</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
