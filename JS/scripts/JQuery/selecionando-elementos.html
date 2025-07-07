@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- JQuery via CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <title>JQuery</title>
+</head>
+<body>
+    <h1 class="diversos2">Selecionando elementos HTML</h1>
+
+    <div>Div 1</div>
+    <div class="diversos">Div 2</div>
+    <div>Div 3</div>
+
+    <div class="lista1">
+        <div>Div I</div>
+        <div>Div II</div>
+        <div>Div III</div>
+    </div>
+
+    <ul class="lista1">
+        <li class="itemMenu1">Item I - Menu 1</li>
+        <li class="itemMenu1 diversos">Item II - Menu 1</li>
+        <li class="itemMenu1">Item III - Menu 1</li>
+        <li class="itemMenu1 exemplo2">Item IV - Menu 1</li>
+        <li class="itemMenu1 exemplo2">Item V - Menu 1</li>
+    </ul>
+
+    <ul>
+        <li class="itemMenu2">Item I - Menu 2</li>
+        <li class="itemMenu2">Item II - Menu 2</li>
+        <li class="itemMenu2">Item III - Menu 2</li>
+        <li class="itemMenu2">Item IV - Menu 2</li>
+        <li class="itemMenu2">Item V - Menu 2</li>
+    </ul>
+
+    <input type="text" placeholder="Campo de Texto I">
+    <input type="text" placeholder="Campo de Texto II">
+    <input type="text" placeholder="Campo de Texto III">
+    <input type="text" placeholder="Campo de Texto IV" class="diversos">
+
+    <select class="diversos">
+        <option>-- Selecione uma opção --</option>
+        <option>Opção 1</option>
+        <option>Opção 2</option>
+        <option>Opção 3</option>
+        <option id="itemUnico">Opção 4</option>
+        <option>Opção 5</option>
+    </select>
+
+    <br>
+
+    <img src="img/carro.jpg" alt="imagem 1" class="diversos2">
+
+</body>
+<script>
+    console.log($('h1'));
+    console.log($('div'));
+    console.log($('ul'));
+    console.log($('li'));
+    console.log($('input'));
+    console.log($('select'));
+    console.log($('option'));
+    console.log($('img'));
+    console.log($('.itensMenu2'));
+    console.log($('input.diversos'));
+    console.log($('.diversos2'));
+    console.log($('#itemUnico'));
+    console.log($('.lista1.exemplo2'));
+
+    // Atuação sobre o Array para selecionar os elementos
+    console.log($('.lista1.exemplo2:first'));
+    console.log($('.lista1.exemplo2:last'));
+    console.log($('.lista1.exemplo2:even'));
+    console.log($('.lista1.exemplo2:odd'));
+</script>
+</html>
