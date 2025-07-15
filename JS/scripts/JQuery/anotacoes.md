@@ -20,8 +20,8 @@
 
 **Exemplo:**
 
-``` javascript
-$('.lista.exemplo2')
+```javascript
+$(".lista.exemplo2");
 ```
 
 ## Manipulação de atributos dos elementos
@@ -30,8 +30,8 @@ Com o `$()`, é possível acessar e modificar atributos dos elementos.
 
 **Exemplo:**
 
-``` javascript
-$(input).attr('type', 'password');
+```javascript
+$(input).attr("type", "password");
 ```
 
 ## Manipulação de conteúdo dos elementos
@@ -40,12 +40,12 @@ O método `.html()` permite recuperar ou alterar o conteúdo HTML dos elementos 
 
 **Exemplo:**
 
-``` javascript
+```javascript
 // Recupera o conteúdo
-$('li').html();
+$("li").html();
 
 // Altera o conteúdo
-$('li').html('Olá! Sou um item de lista alterado!');
+$("li").html("Olá! Sou um item de lista alterado!");
 ```
 
 ## Manipulação de valores em inputs `radio` e `checkbox`
@@ -54,11 +54,11 @@ Inputs do tipo `radio` e `checkbox` possuem o atributo `value`, que identifica c
 
 **Exemplo:**
 
-``` javascript
+```javascript
 $(document).ready(() => {
-    $.each($('.interesse:checked'), (index, value) => {
-        console.log(index, value.value);
-    });
+  $.each($(".interesse:checked"), (index, value) => {
+    console.log(index, value.value);
+  });
 });
 ```
 
@@ -82,10 +82,10 @@ $(document).ready(() => {
 
 **Exemplo:**
 
-``` javascript
+```javascript
 // Adiciona um elemento filho no final
 $(document).ready(() => {
-    $('#lista1').append('<li>Item 4</li>');
+  $("#lista1").append("<li>Item 4</li>");
 });
 
 // Como ficaria:
@@ -98,7 +98,7 @@ $(document).ready(() => {
 
 // Adiciona um elemento filho no início
 $(document).ready(() => {
-    $('#lista1').prepend('<li>Item 4</li>');
+  $("#lista1").prepend("<li>Item 4</li>");
 });
 
 // Como ficaria:
@@ -111,7 +111,7 @@ $(document).ready(() => {
 
 // Adiciona um elemento acima (antes) do selecionado
 $(document).ready(() => {
-    $('#lista2').before('<hr>');
+  $("#lista2").before("<hr>");
 });
 
 // Como ficaria:
@@ -124,7 +124,7 @@ $(document).ready(() => {
 
 // Adiciona um elemento abaixo (depois) do selecionado
 $(document).ready(() => {
-    $('#lista2').after('<p>Olá!! Sou um parágrafo criado por jQuery!!</p>');
+  $("#lista2").after("<p>Olá!! Sou um parágrafo criado por jQuery!!</p>");
 });
 
 // Como ficaria:
@@ -138,8 +138,8 @@ $(document).ready(() => {
 
 // Adiciona um elemento acima e abaixo do selecionado
 $(document).ready(() => {
-    $('#lista2').before('<div> Lista 2');
-    $('#lista2').after('</div>');
+  $("#lista2").before("<div> Lista 2");
+  $("#lista2").after("</div>");
 });
 
 // Como ficaria:
@@ -152,7 +152,7 @@ $(document).ready(() => {
 // --------------------------------
 
 $(document).ready(() => {
-    $('#lista1').remove();
+  $("#lista1").remove();
 });
 ```
 
@@ -172,13 +172,13 @@ $(document).ready(() => {
 
 ```javascript
 // Seleciona o pai do elemento
-$('.item').parent();
+$(".item").parent();
 
 // Seleciona o ancestral mais próximo com a classe 'container'
-$('.item').closest('.container');
+$(".item").closest(".container");
 
 // Seleciona todos os elementos filhos <span> dentro do elemento
-$('.item').find('span');
+$(".item").find("span");
 ```
 
 ## Manipulação do CSS
@@ -194,56 +194,55 @@ $('.item').find('span');
 **Exemplo:**
 
 ```javascript
-$(document).ready(function() {
+$(document).ready(function () {
+  // Manipulando o CSS
+  $("body").css({
+    "font-family": "Roboto, Arial, sans-serif",
+    "background-color": "#F0F0F0",
+    color: "#333",
+  });
 
-	// Manipulando o CSS
-	$('body').css({
-        'font-family': 'Roboto, Arial, sans-serif',
-		'background-color': '#F0F0F0',
-		'color': '#333'
-    });
+  $("#hero").css({
+    "background-color": "#155661",
+    margin: "0",
+    padding: "10px 20px",
+    "text-align": "center",
+    "border-bottom-left-radius": "5px",
+    "border-bottom-right-radius": "5px",
+  });
 
-	$('#hero').css({
-		'background-color': '#155661',
-		'margin': '0',
-		'padding': '10px 20px',
-		'text-align': 'center',
-		'border-bottom-left-radius': '5px',
-		'border-bottom-right-radius': '5px'
-	});
+  $("button").css({
+    "background-color": "#00C2DF",
+    border: "1px solid #CCC",
+    "border-radius": "5px",
+    "margin-top": "10px",
+    padding: "10px 20px",
+    cursor: "pointer",
+  });
 
-	$('button').css({
-		'background-color': '#00C2DF',
-		'border': '1px solid #CCC',
-    	'border-radius': '5px',
-		'margin-top': '10px',
-		'padding': '10px 20px',
-		'cursor': 'pointer'
-	});
+  $("textarea").css({
+    width: "100%",
+    height: "100px",
+    "border-radius": "5px",
+    padding: "10px",
+    "box-sizing": "border-box",
+  });
 
-	$('textarea').css({
-		'width': '100%',
-		'height': '100px',
-		'border-radius': '5px',
-		'padding': '10px',
-		'box-sizing': 'border-box'
-	});
+  $('input[type="text"]').css({
+    width: "200px",
+    padding: "2px",
+    "border-radius": "5px",
+    "box-sizing": "border-box",
+    "margin-bottom": "10px",
+  });
 
-	$('input[type="text"]').css({
-		'width': '200px',
-		'padding': '2px',
-		'border-radius': '5px',
-		'box-sizing': 'border-box',
-		'margin-bottom': '10px'
-	});
-
-	$('input[type="email"]').css({
-		'width': '200px',
-		'padding': '2px',
-		'border-radius': '5px',
-		'box-sizing': 'border-box',
-		'margin-bottom': '10px'
-	});
+  $('input[type="email"]').css({
+    width: "200px",
+    padding: "2px",
+    "border-radius": "5px",
+    "box-sizing": "border-box",
+    "margin-bottom": "10px",
+  });
 });
 ```
 
@@ -258,3 +257,29 @@ Existem vários tipos de eventos, sendo os principais:
 - `Teclado`
 
 - `Janela`
+
+### Eventos da Janela
+
+- `.scroll()`: É acionado ao rolar a janela.
+
+- `.resize()`: É acionado ao reajustar a janela.
+
+### Eventos do Mouse
+
+- `.mousedown()`: É acionado ao presssionar o botão.
+
+- `.mouseup()`: É acionado após a pressão do botão.
+
+- `.click()`: É acionado ao clicar.
+
+- `.dblclick()`: É acionado ao clicar 2 vezes seguidas.
+
+- `.mousemove()`: É acionado ao mover o mouse.
+
+- `.mouseenter()`: É acionado ao.
+
+- `.mouseleave()`: É acionado ao tirar o mouse da janela.
+
+- `.mouseover()`: É acionado ao.
+
+- `.mouseout()`: É acionado ao.
