@@ -1,63 +1,164 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<meta charset="UTF-8">
-		<title>jQuery</title>
+  <head>
+    <meta charset="UTF-8" />
+    <title>jQuery</title>
 
-		<style>
-			
-		</style>
+    <style>
+      body {
+        font-family: "Roboto, Arial, sans-serif";
+        background-color: #f0f0f0;
+        color: #333;
+      }
 
-		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-		<script>
+      #hero {
+        background-color: #155661;
+        margin: 0;
+        padding: 10px 20px;
+        text-align: center;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
 
-		</script>
-	</head>
+      button {
+        background-color: #00c2df;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
 
-	<body>
-		
-		<div id="topo">
-			<h1>Eventos</h1>
-		</div>
+      textarea {
+        width: 100%;
+        height: 100px;
+        border-radius: 5px;
+        padding: 10px;
+        box-sizing: border-box;
+      }
 
-		<div>
-			<h3>Browser</h3>
-			<span>Onload: </span><span>?</span><br />
-			<span>Scroll: </span><span>?</span><br />
-			<span>Window: </span><span>?</span>
-			<hr />
+      input[type="text"] {
+        width: 200px;
+        padding: 2px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+      }
 
-			<h3>Mouse</h3>
-			<button type="button">Clique aqui</button>
-			<button type="button">Clique aqui 2x</button>
-			<div style="background-color: red; width: 80px; height: 50px; margin-top: 10px; margin-bottom: 10px"></div>
-			<span>Resultado do evento sobre a div</span>
-			<hr />
+      input[type="email"] {
+        width: 200px;
+        padding: 2px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+      }
 
-			<h3>Teclado</h3>
-			<span>Nome:</span>
-			<input type="text" />
-			<span>Resultado do evento sobre o input</span>
-			<hr />
+      #div1 {
+        height: 100px;
+        width: 100px;
+        border: solid 1px;
+        overflow-y: scroll;
+      }
+    </style>
 
-			<h3>Formulário</h3>
-			<form>
-				<span>Nome:</span>
-				<input type="text" />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(() => {
+        // eventos da janela
+        $("#onload").html("Página Carregada");
+        $(window).scroll(() => {
+          $("#scroll").html("Scroll acionado");
+        });
 
-				<span>E-mail:</span>
-				<input type="text" />
+        $(window).resize(() => {
+          $("#resize-window")
+            .html("Página redimensionada")
+            .css("background-color", "red");
+        });
 
-				<span>Motivo do contato:</span>
-				<select>
-					<option value="">-- Selecione --</option>
-					<option value="duvida">Dúvida</option>
-					<option value="sugestao">Sugestão</option>
-				</select>
-				
-				<button type="button">Enviar</button>
-			</form>
-		</div>
-	</body>
+        $("#div1").scroll((e) => {
+          $(e.target).css("background-color", "blue");
+        });
 
+        // eventos do Mouse
+        $("#btn1").mousedown(() => {
+          $("#div2").css("background-color", "green");
+        });
+
+        $("#btn1").mouseup(() => {
+          $("#div2").css("background-color", "gray");
+        });
+
+        $("#btn2").dblclick(() => {
+          $("#div2").css("background-color", "yellow");
+        });
+
+        $("#div2").mousemove((e) => {
+          $("#resultado-div").html(`X: ${e.offsetX}, Y: ${e.offsetY}`);
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="topo">
+      <h1>Eventos</h1>
+    </div>
+
+    <div>
+      <h3>Browser</h3>
+      <span>Onload: </span><span id="onload">?</span><br />
+      <span>Scroll: </span><span id="scroll">?</span><br />
+      <span>Resize Window: </span><span id="resize-window">?</span>
+      <div id="div1">
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      </div>
+      <hr />
+
+      <h3>Mouse</h3>
+      <button id="btn1" type="button">Clique aqui</button>
+      <button id="btn2" type="button">Clique aqui 2x</button>
+      <div
+        id="div2"
+        style="
+          background-color: red;
+          width: 80px;
+          height: 50px;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        "
+      ></div>
+      <span>Resultado do evento sobre a div: </span
+      ><span id="resultado-div"></span>
+      <hr />
+
+      <h3>Teclado</h3>
+      <span>Nome:</span>
+      <input type="text" />
+      <span>Resultado do evento sobre o input</span>
+      <hr />
+
+      <h3>Formulário</h3>
+      <form>
+        <span>Nome:</span>
+        <input type="text" />
+
+        <span>E-mail:</span>
+        <input type="text" />
+
+        <span>Motivo do contato:</span>
+        <select>
+          <option value="">-- Selecione --</option>
+          <option value="duvida">Dúvida</option>
+          <option value="sugestao">Sugestão</option>
+        </select>
+
+        <button type="button">Enviar</button>
+      </form>
+    </div>
+  </body>
 </html>
