@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery</title>
+
+	<!-- Google Fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+
+	<!-- JQuery via CDN -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function() {
+			// Manipulando o CSS
+			$('body').css({
+                'font-family': 'Roboto, Arial, sans-serif',
+				'background-color': '#F0F0F0',
+				'color': '#333'
+            });
+
+			$('#hero').css({
+				'background-color': '#155661',
+				'margin': '0',
+				'padding': '10px 20px',
+				'text-align': 'center',
+				'border-bottom-left-radius': '5px',
+				'border-bottom-right-radius': '5px'
+			});
+
+			$('button').css({
+				'background-color': '#00C2DF',
+				'border': '1px solid #CCC',
+				'border-radius': '5px',
+				'margin-top': '10px',
+				'padding': '10px 20px',
+				'cursor': 'pointer'
+			});
+
+			$('textarea').css({
+				'width': '100%',
+				'height': '100px',
+				'border-radius': '5px',
+				'padding': '10px',
+				'box-sizing': 'border-box'
+			});
+
+			$('input[type="text"]').css({
+				'width': '200px',
+				'padding': '2px',
+				'border-radius': '5px',
+				'box-sizing': 'border-box',
+				'margin-bottom': '10px'
+			});
+
+			$('input[type="email"]').css({
+				'width': '200px',
+				'padding': '2px',
+				'border-radius': '5px',
+				'box-sizing': 'border-box',
+				'margin-bottom': '10px'
+			});
+		});
+	</script>
+</head>
+<body>
+	<header id="hero">
+		<nav>
+			<h1>Barra de navegação da aplicação</h1>
+		</nav>
+	</header>
+
+	<section id="content">
+		<h3>Contato</h3>
+		<hr>
+
+		<p>Nome:</p>
+		<input type="text">
+		<br>
+
+		<p>Email:</p>
+		<input type="email" placeholder="Digite seu email...">
+		<br>
+
+		<p>Mensagem:</p>
+		<textarea placeholder="Digite algo..."></textarea>
+		<br>
+
+		<button type="button">Enviar</button>
+	</section>
+</body>
+</html>

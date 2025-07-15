@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery</title>
+	<!-- JQuery via CDN -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(() => {
+			// Navegando entre elementos
+			console.log($('#secao1').parent()); // Retorna o elemento pai de secao1
+
+			console.log($('#secao1').find('div')); // Retorna todos os elementos div filhos de secao1
+
+			console.log($('#item').closest('ul')); // Retorna o elemento pai de item que seja um "ul" mais próximo.
+		});
+	</script>
+</head>
+<body>
+	<div id="topo">
+		<ul id="menu">
+			<li class="item">qualquer</li>
+			<li class="item">coisa</li>
+		</ul>
+	</div>
+
+	<div id="pagina">
+		<div id="secao1" class="secoes">
+			<div id="subSecao">wow</div>
+		</div>
+			
+		<div id="secao2" class="secoes">
+			<h1>Lorissimo</h1>
+		</div>
+	</div>		
+		
+	<div id="rodape">
+		<div>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, quisquam. In obcaecati cupiditate maiores veniam corrupti, reprehenderit aperiam earum consequuntur quidem incidunt, recusandae repudiandae ea. Sint dignissimos earum quidem sapiente!</p>	
+			<span id="opcao1">hihi</span>
+		</div>
+	</div>
+</body>
+</html>

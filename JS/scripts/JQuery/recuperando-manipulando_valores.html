@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery</title>
+
+    <!-- JQuery via CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <!-- JS - JQuery -->
+    <script>
+
+        $(document).ready(() => {
+
+            $.each($('.interesse:checked'), (index, value) => {
+                console.log(index, value.value);
+            });
+        });
+
+    </script>
+</head>
+<body>
+
+    <p>Nome:</p>
+    <input type="text" id="nome">
+    <br>
+
+    <p>Onde nos encontrou?</p>
+    <select id="origem">
+        <option value="1">-- Selecione --</option>
+        <option value="2">Google</option>
+        <option value="3">Facebook</option>
+        <option value="4">Instagram</option>
+        <option value="5">LinkedIn</option>
+        <option value="6">Twitter</option>
+        <option value="7">Amigos e Família</option>
+        <option value="8">Outros</option>
+    </select>
+    <br>
+
+    <p>Gênero:</p>
+    <input type="radio" name="genero" class="genero" value="F">Feminino<br>
+    <input type="radio" name="genero" class="genero" value="M">Masculino<br>
+
+    <p>Interesses:</p>
+    <input type="checkbox" name="interesse" class="interesse" value="PHP">PHP<br>
+    <input type="checkbox" name="interesse" class="interesse" value="JS">JavaScript<br>
+    <input type="checkbox" name="interesse" class="interesse" value="Python">Python<br>
+    <input type="checkbox" name="interesse" class="interesse" value="Java">Java<br>
+    <input type="checkbox" name="interesse" class="interesse" value="C#">C#<br>
+    <input type="checkbox" name="interesse" class="interesse" value="C++">C++<br>
+    <input type="checkbox" name="interesse" class="interesse" value="Angular">Angular<br>
+    <input type="checkbox" name="interesse" class="interesse" value="Go">Go<br>
+
+
+</body>
+</html>

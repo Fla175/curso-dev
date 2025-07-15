@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery</title>
+
+    <!-- JQuery via CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <!-- JS - JQuery -->
+    <script>
+
+        $(document).ready(() => {
+            // Adicionando elementos
+                // Adicionando um item no final e no início do elemento
+            $('#lista1').append('<li>Item 4</li>');
+            $('#lista1').prepend('<li>Item 4</li>');
+
+            // Adicionando um item antes e depois do elemento
+            $('#lista2').before('<hr>');
+            $('#lista2').after('<p>Olá!! Sou um parágrafo criado por jQuery!!</p>');
+
+            // Adicionando um item depois do elemento <hr>
+            $('#linha').after('<footer>Eu sou um footer criado após a última linha por jQuery</footer>');
+
+            // Adicionando um elemento pai utilizando before e after
+            $('#lista2').before('<div> Lista 2');
+            $('#lista2').after('</div>');
+        });
+
+    </script>
+</head>
+<body>
+    <ul id="lista1">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <div id="lista2">
+        <div>Item 1</div>
+        <div>Item 2</div>
+        <div>Item 3</div>
+    </div>
+
+    <hr id="linha">
+</body>
+</html>

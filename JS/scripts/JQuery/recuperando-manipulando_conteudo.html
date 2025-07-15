@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,18 +13,23 @@
     <script>
 
         $(document).ready(() => {
-            console.log($('div').attr('style', 'background-color: blue; width: 200px; height: 200px;'));
+
+            console.log('Conteúdo Div 1:', $('#div1').html());
+
+            console.log('Conteúdo Div 2:', $('#div2').html());
         })
+
+        $('#div1').html('<strong>Eu sou o novo valor</strong>');
 
     </script>
 </head>
+
 <body>
 
-    <img src="img/esfera_1.png" alt="Esfera vermelha" style="border: solid, 5px; border-color: black;">
+    <div id="div1" style="border:solid 1px #000; width: 150px; height: 140px;">Div 1</div>
 
-    <div style="background-color: red; width: 100px; height: 100px;"></div>
-
-    <input type="text" value="Eu sou um input">
+    <div id="div2" style="border:solid 1px #000; width: 150px; height: 140px;">Div 2</div>
 
 </body>
+
 </html>

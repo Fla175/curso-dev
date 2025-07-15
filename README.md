@@ -1,36 +1,26 @@
+# Flávio F. Pomin
+
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=17&pause=1000&color=16A3C7&random=false&width=460&height=40&lines=Hello%2C+My+name+is+Flávio+F.+Pomin!+%F0%9F%91%BE)](https://git.io/typing-svg)
 
-<p align="left"> Currently I'm learning SQL and MariaDB. I have some experience in HTML, CSS, JS, NodeJS, Bootstrap, ecmaScript (using Babel), PHP, POO, Markdown and figma. I use github codespaces to edit my projects and learning codes. I'm in <strong>Secondary School</strong> right now, and I'm working at MegaNuv, a <strong>Cloud Computing</strong> company.</p>
+Currently I'm learning about JQuery, a JavaScript library.  
+I have some experience in **HTML**, **CSS**, **JS**, **NodeJS**, **Bootstrap**, **ECMAScript** (using Babel), **PHP**, **POO**, **Markdown** and **Figma**.  
+I use GitHub Codespaces to edit my projects and learn code.  
+I'm in **Secondary School** right now and I'm working at **MegaNuv**, a **Cloud Computing** company.
 
-<hr>
+## 📬 Connect with me
 
-<h3 align="left">Connect with me!</h3>
+[![E-mail](https://img.shields.io/badge/-Email-000?style=for-the-badge&logo=microsoft-outlook&logoColor=FF00F6)](mailto:flaviofpomin@gmail.com)
 
-[![E-mail](https://img.shields.io/badge/-Email-000?style=for-the-badge&logo=microsoft-outlook&logoColor=FF00F6&color:FFF)](mailto:flaviofpomin@gmail.com)
+## 🌍 Nationality
 
-<hr>
+**Brazilian** 🇧🇷
 
-<h3 align="left">Nationality</h3>
-<h4>Brazilian 🇧🇷🇧🇷🇧🇷🇧🇷🇧🇷🇧🇷🇧🇷</h4>
+## 🚀 My Stack
 
-<hr>
+  ![My Stack: HTML, CSS, Bootstrap, JS, NodeJS, Babel, PHP, GitHub, Figma](https://skillicons.dev/icons?i=html,css,bootstrap,js,nodejs,babel,php,github,figma)
 
-<h3 align="left">My Stack</h3>
+## 📊 GitHub Stats
 
-<div align="center">
- <img src="https://skillicons.dev/icons?i=devto,html,css,bootstrap,js,nodejs,babel,php,github,figma" /> 
-</div>
+  ![Github stats from Fla175](https://github-readme-stats.vercel.app/api/top-langs/?username=Fla175&layout=compact&theme=dark)
 
-<hr>
-
-<div align="center"><br>
-<h3>GitHub Stats</h3>
-
-
-<div style={{display: "flex"}}>
- <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Fla175&layout=compact&theme=dark" />
- 
- <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Fla175&show_icons=true&theme=dark" />
-</div>
-</div>
-</div>
+  ![Github stats from Fla175](https://github-readme-stats.vercel.app/api?username=Fla175&show_icons=true&theme=dark)
