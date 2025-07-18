@@ -249,12 +249,52 @@ $(document).ready(function() {
 
 ## Eventos do Browser (Navegador)
 
-Existem vários tipos de eventos, sendo os principais:
+> Existem muitos eventos, mas os principais, são os eventos da `Janela`, `Mouse`, `Teclado` e `Formulário`.
 
-- `Formulário`
+### Eventos da Janela
 
-- `Mouse`
+- `.scroll()`: É acionado quando a janela é rolada
 
-- `Teclado`
+- `.resize()`: É acionado quando a janela é reajustada de tamanho
 
-- `Janela`
+### Eventos do Mouse
+
+- `.mousedown()`: É acionado quando o botão é segurado.
+
+- `.mouseup()`: É acionado quando o botão é liberado.
+
+- `.click()`: É acionado quando o botão é clicado.
+
+- `.dblclick()`: É acionado quando o botão é clicado 2 (duas) vezes.
+
+- `.mousemove()`: É acionado quando o cursor se move.
+
+> Versões novas do `.mouseover()` e `.mouseout()` (respectivamente).
+
+- `.mouseenter()`: É acionado quando o cursor fica em cima de um elemento.
+
+- `.mouseleave()`: É acionado quando o cursor fica sái de cima de um elemento.
+
+> Versões antigas.
+
+- `.mouseover()`: É acionado quando o cursor fica em cima de um elemento.
+
+- `.mouseout()`: É acionado quando o cursor fica sái de cima de um elemento.
+
+### Eventos do Teclado
+
+- `.keydown()`: É acionado quando uma tecla é segurada.
+
+- `.keyup()`: É acionado quando uma tecla é liberada.
+
+### Eventos do Formulário
+
+- `.focus()`: É acionado quando um elemento ganha o foco (quando é clicado com o mouse ou selecionado com o `tab`).
+
+- `.blur()`: É acionado quando um elemento perde o foco (quando outro elemento ganha foco).
+
+- `.change()`: É acionado quando o valor de um elemento de formulário muda e perde o foco.
+
+- `.submit()`: É acionado quando um formulário é enviado.
+
+## Efeitos Especiais
