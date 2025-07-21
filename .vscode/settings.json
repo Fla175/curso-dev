@@ -1,5 +1,7 @@
 {
     "liveServer.settings.port": 5501,
     "editor.maxTokenizationLineLength": 3000000000000000000000000000000000000000000000000,
-    "markdown.validate.enabled": true
+    "markdown.validate.enabled": true,
+    "IDX.aI.enableInlineCompletion": true,
+    "IDX.aI.enableCodebaseIndexing": true
 }

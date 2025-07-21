@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JQuery</title>
+
+    <!-- Eruda via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script src="log/bookmark.js"></script>
+    <script>
+      eruda.init()
+      eruda.show();
+    </script>
+
+    <style>
+      .hello-world {
+        background-color: lawngreen;
+      }
+
+      #div1 {
+        width: 80px;
+        height: 80px;
+        border: solid 1px #000;
+      }
+
+      .emDestaque {
+        border: solid 5px rgba(255, 0, 0, 0.5);
+        cursor: text;
+        background: linear-gradient(to right, gold, darkred);
+      }
+    </style>
+
+    <!-- JQuery via CDN -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(() => {
+          // Melhor opção
+        $('.btn').on('click', e => {
+          console.log(`Botão ${$(e.target).attr('id')} foi clicado!`);
+          alert(`Botão ${$(e.target).attr('id')} foi clicado!`);
+        });
+
+          // Opção utilizando o `.trigger()`
+        $('#btn2').on('click', () => {
+          alert('Botão 2 foi clicado!');
+        });
+
+        $('#btn1').on('click', () => {
+          $('#btn2').trigger('click');
+        });
+
+        // 2 (duas) funções (1. `.mouseenter()`; 2. `.mouseleave()`)
+        $('#div1').hover(e => { // .mouseenter()
+          $(e.target).addClass('emDestaque');
+        }, e => { // .mouseleave()
+          $(e.target).removeClass('emDestaque');
+        });
+
+        // 1 (uma) função (mesma inteligência que o de 2 funções ou o comentado abaixo e menor)
+        $('#div1').hover(e => { // Pode se considerar este modelo, o menor e mais eficiente para este caso (top 1).
+          $(e.target).toggleClass('emDestaque');
+        });
+
+        // $('#div1').on('mouseenter', e => {
+        //   $(e.target).addClass('emDestaque');
+        // });
+
+        // $('#div1').on('mouseleave', e => {
+        //   $(e.target).removeClass('emDestaque');
+        // });
+      });
+    </script>
+  </head>
+  <body>
+    <button class="btn" id="btn1">Button 1</button>
+    <button class="btn hello-world" id="btn2">Button 2</button>
+    <hr>
+    <div id="div1">
+      <textarea placeholder="Escreva aqui..."></textarea>
+    </div>
+  </body>
+</html>

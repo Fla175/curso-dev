@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JQuery</title>
+
+    <!-- Eruda via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script src="log/bookmark.js"></script>
+    <script>
+      eruda.init()
+      eruda.show();
+    </script>
+
+    <style>
+    	#div1 {
+            width: 80px;
+            height: 80px;
+            border: solid 1px grey;
+            background-color: darkslategrey;
+        }
+    </style>
+
+    <!-- JQuery via CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+    <script>
+		$(document).ready(() => {
+            let visualFinal =" 'width': '160px', 'height': '160px', 'margin-left': '200px', 'margin-top': '200px', 'border-radius': '10px',"
+            $('button').on('click', () => {
+                $('#div1').animate({visualFinal}, {
+                    duration: 1365,
+                    start: () => { console.log('A animação foi iniciada'); },
+                    complete: () => { console.log('A animação foi finalizada');
+                    }
+                });
+
+                $('#div2').animate({visualFinal}, {});
+            });
+        });
+	</script>
+</head>
+<body>
+    <button type="button">Iniciar animação</button>
+    <div id="div1"></div>
+    <div id="div2"></div>
+</body>
+</html>

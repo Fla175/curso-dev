@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery</title>
+
+    <!-- Estilos -->
+    <style>
+      .focado {
+        background-color: lawngreen;
+      }
+    </style>
+
+    <!-- Eruda via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script src="log/bookmark.js"></script>
+    <script>
+      eruda.init()
+      eruda.show();
+    </script>
+
+    <!-- JQuery via CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(() => {
+          $('body').append('<br><br><input type="text" id="2" placeholder="2">');
+
+          $('body').on('focus', 'input', e => {
+            $(e.target).addClass('focado');
+            console.log(`Input ${$(e.target).attr('id')} está focado!`);
+          });
+
+          $('body').on('blur', 'input', e => {
+            $(e.target).removeClass('focado');
+            console.log(`Input ${$(e.target).attr('id')} foi desfocado!`);
+          });
+        })
+    </script>
+</head>
+<body>
+    <input type="text" id="1" placeholder="1">
+</body>
+</html>

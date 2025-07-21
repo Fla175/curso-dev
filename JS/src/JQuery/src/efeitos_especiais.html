@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery</title>
+
+		<style>
+			button {
+				margin-bottom: 5px;
+				width: 100px;
+			}
+
+			.div {
+				width: 100px;
+				height: 100px;
+			}
+
+			.div1 {
+				background-color: red
+			}
+
+			.div2 {
+				background-color: green
+			}
+
+			.div3 {
+				background-color: blue
+			}
+
+			.grupo {
+				padding: 25px;
+				float: left
+			}
+		</style>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script>
+			$(document).ready(() => {
+
+			})
+		</script>
+	</head>
+
+	<body>
+		
+		<div class="grupo">
+			<button type="button">DIV 1</button>
+			<div id="div1" class="div div1"></div>
+		</div>
+
+		<div class="grupo">
+			<button type="button">DIV 2</button>
+			<div id="div2" class="div div2"></div>
+		</div>
+
+		<div class="grupo">
+			<button type="button">DIV 3</button>
+			<div id="div3" class="div div3"></div>
+		</div>
+			
+	</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JQuery</title>
+
+    <!-- Eruda via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script src="log/bookmark.js"></script>
+    <script>
+      eruda.init()
+      eruda.show();
+    </script>
+
+    <style>
+    	button {
+			margin-bottom: 5px;
+			width: 100px;
+		}
+
+		.div {
+			width: 100px;
+			height: 100px;
+		}
+
+		#div1 {
+			background-color: red
+		}
+
+		#div2 {
+			background-color: green
+		}
+
+		#div3 {
+			background-color: blue
+		}
+
+		.grupo {
+			padding: 25px;
+			float: left
+		}
+    </style>
+
+    <!-- JQuery via CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+    <script>
+		$(document).ready(() => {
+			// Automação "Button Div-1": Quando o botão da Div 1 for clicado, ela irá aparecer ou desaparecer, dependendo de seu estado.
+			$('#btn1').on('click', () => {
+				$('#div1').toggle('medio');
+			});
+
+			// Automação "Button Div-2": Quando o botão da Div 2 for clicado, ela irá aparecer ou desaparecer no estilo "Fade", dependendo de seu estado.
+			$('#btn2').on('click', () => {
+				$('#div2').fadeToggle('medio');
+			});
+
+			// Automação "Button Div-3": Quando o botão da Div 3 for clicado, ela irá aparecer ou desaparecer no estilo "Slide", dependendo de seu estado.
+			$('#btn3').on('click', () => {
+				$('#div3').slideToggle('medio');
+			});
+		});
+	</script>
+</head>
+<body>
+    <div class="grupo">
+		<button type="button" id="btn1">DIV 1</button>
+		<div id="div1" class="div"></div>
+	</div>
+
+	<div class="grupo">
+		<button type="button" id="btn2">DIV 2</button>
+		<div id="div2" class="div"></div>
+	</div>
+
+	<div class="grupo">
+		<button type="button" id="btn3">DIV 3</button>
+		<div id="div3" class="div"></div>
+	</div>
+</body>
+</html>

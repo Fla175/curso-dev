@@ -297,4 +297,71 @@ $(document).ready(function() {
 
 - `.submit()`: É acionado quando um formulário é enviado.
 
+### Extra 1 - `.on()` e `.off()`
+
+> As funções `.on()` e `.off()` permitem adicionar ou remover eventos de um elemento. Em versões mais antigas do JQuery, era utilizado outras funções, a primeira foi a `.live()`, que depois foi trocada por `.bind()` e por último, trocada pelas versões atuais, `.on()` e `.off()`.
+
+### Extra 2 - `.trigger()`, `.hover()` e `.toggleClass()`
+
+- `.trigger()` -> Aciona evento de modo programático
+
+- `.hover()` -> Captura os eventos `.mouseenter()` e `.mouseleave()`, utilizando 1 única função geral ou 2 para o `.mouseenter()` e o `.mouseleave()`.
+
+- `.toggleClass()` -> Adiciona ou remove uma classe de um elemento, de acordo com a presença ou não da mesma, é a função top 1 para se utilizar no `.hover()`, sendo compacta e eficiente.
+
 ## Efeitos Especiais
+
+> Efeitos Especiais são funções prontas que permitem animar transições de elementos HMTL.
+
+- `.show()`: Mostra um elemento.
+
+- `.hide()`: Esconde um elemento.
+
+- `.toggle()`: Mostra ou esconde um elemento, dependendo do estado atual.
+
+- `.fadeOut()`: Esconde um elemento com uma transição de fade (efeito de transparência).
+
+- `.fadeIn()`: Mostra um elemento com uma transição de fade (efeito de transparência).
+
+- `.fadeToggle()`: Mostra ou esconde um elemento com uma transição de fade (efeito de transparência).
+
+- `.fadeTo()`: Leva um elemento até um certo ponto de opacidade
+
+- `.slideUp()`: Mostra ou esconde um elemento com uma transição de slide (efeito de deslizamento).
+
+- `.slideDown()`: Mostra ou esconde um elemento com uma transição de slide (efeito de deslizamento).
+
+- `.slideToggle()`: Mostra ou esconde um elemento com uma transição de slide (efeito de deslizamento).
+
+## Animações
+
+> `.animate()` é uma função mais personalizada e precisa, permitindo animar¹ algum elemento da forma que quiser.
+>
+> ¹: A animação é na verdade uma transição de um elemento para o estilo desejado.
+
+
+O `.animate()` espera 2 (dois) parâmetros, sendo eles:
+1. As "Propriedades Visuais"
+2. As "Opções de Transição"
+
+> Observação: As 2 propriedades são configuradas dentro de `{}` (chaves), mas o parâmetro de duração das "Opções de Transição" pode ser configurado por milisegundos sem estar dentro do mesmo ({}).
+
+### Propriedades Visuais
+
+As propriedades visuais se resumem a CSS, como cor, tamanho, posição, etc.
+
+> Há também a opção de associar os estilos CSS à uma variável e utilizar a mesma nas Propriedades Visuais.
+
+### Opções de Transição
+
+Já este possui seus próprios parâmetros para configuração da transação, cujo podem ser pesquisados na wiki do JQuery. Aqui estão os mais simples e utilizados:
+
+- `duration`: Determina o tempo da transição em mílisegundos.
+
+- `start`: Executa uma função ao iniciar a animação.
+
+- `complete`: É o antônimo do `start`, executa uma função ao finalizar a animação.
+
+## Ajax com JQuery
+
+> O ajax (Asynchronous JavaScript and XML), como deve se lembrar, é uma metodologia de Desenvolvimento Web que visa carregar partes de um site sem recarregar tudo, também uma comunicação assíncrona entre o front-end e o back-end, deixando a experiência do usuário mais rápida e responsiva.
