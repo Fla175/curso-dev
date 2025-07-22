@@ -42,6 +42,6 @@ $(document).ready(() => {
 				$('#totalVendas').html(dados.totalVendas)
 			},
 			error: erro => { console.log(erro) } // Se der erro
-		})
-	})
+		});
+	});
 })
