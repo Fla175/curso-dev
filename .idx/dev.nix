@@ -1,41 +1,55 @@
-{ pkgs ? import <nixpkgs> {} }:
+# To learn more about how to use Nix to configure your environment
+# see: https://firebase.google.com/docs/studio/customize-workspace
+{ pkgs, ... }: {
+  # Which nixpkgs channel to use.
+  channel = "stable-24.05"; # or "unstable"
 
-pkgs.mkShell {
-  # 1. Adicione o pacote do MariaDB aos inputs de build do seu ambiente
-  buildInputs = with pkgs; [
-    mariadb
-    # ... aqui podem entrar outros pacotes que seu projeto já utiliza
+  # Use https://search.nixos.org/packages to find packages
+  packages = [
+    # pkgs.go
+    # pkgs.python311
+    # pkgs.python311Packages.pip
+    # pkgs.nodejs_20
+    # pkgs.nodePackages.nodemon
   ];
 
-  # 2. O shellHook define comandos e variáveis de ambiente que estarão
-  #    disponíveis assim que você entrar no shell do Nix.
-  shellHook = ''
-    # Define um diretório local para os dados do MariaDB para não poluir o sistema
-    export MARIADB_DATA_DIR="$PWD/.mariadb-data"
+  # Sets environment variables in the workspace
+  env = {};
+  idx = {
+    # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
+    extensions = [
+      # "vscodevim.vim"
+    ];
 
-    # Mensagem de boas-vindas
-    echo ""
-    echo "Bem-vindo ao ambiente de desenvolvimento com MariaDB!"
+    # Enable previews
+    previews = {
+      enable = true;
+      previews = {
+        # web = {
+        #   # Example: run "npm run dev" with PORT set to IDX's defined port for previews,
+        #   # and show it in IDX's web preview panel
+        #   command = ["npm" "run" "dev"];
+        #   manager = "web";
+        #   env = {
+        #     # Environment variables to set for your server
+        #     PORT = "$PORT";
+        #   };
+        # };
+      };
+    };
 
-    # Função para inicializar o banco de dados se ele ainda não existir
-    iniciar_db() {
-      if [ ! -d "$MARIADB_DATA_DIR" ]; then
-        echo "-> O diretório de dados do MariaDB não foi encontrado. Inicializando..."
-        mysql_install_db --user=$(whoami) --basedir=${pkgs.mariadb} --datadir="$MARIADB_DATA_DIR"
-        echo "-> Diretório de dados inicializado em '$MARIADB_DATA_DIR'."
-      fi
-    }
-
-    # Alias para iniciar o serviço do MariaDB
-    alias db-start="iniciar_db && mysqld_safe --datadir='$MARIADB_DATA_DIR' > /dev/null 2>&1 & echo '-> Servidor MariaDB iniciado em segundo plano.'"
-
-    # Alias para parar o serviço do MariaDB
-    alias db-stop="mysqladmin -u root shutdown && echo '-> Servidor MariaDB parado com sucesso.'"
-
-    # Alias para reiniciar o serviço do MariaDB
-    alias db-restart="db-stop && sleep 2 && db-start"
-
-    echo "-> Comandos do MariaDB disponíveis: 'db-start', 'db-stop', 'db-restart'"
-    echo ""
-  '';
+    # Workspace lifecycle hooks
+    workspace = {
+      # Runs when a workspace is first created
+      onCreate = {
+        # Example: install JS dependencies from NPM
+        # npm-install = "npm install";
+      };
+      # Runs when the workspace is (re)started
+      onStart = {
+        # Example: start a background task to watch and re-build backend code
+        # watch-backend = "npm run watch-backend";
+      };
+    };
+  };
 }

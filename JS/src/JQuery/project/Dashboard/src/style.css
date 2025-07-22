@@ -24,7 +24,13 @@ body {
   line-height: 50px;
   display: block;
   text-align: center;
-  font-size: 14px;
+  align-content: center;
+}
+
+#img {
+  margin-top: 10px;
+  width: 83.2px;
+  height: 52px;
 }
 
 .nav-side-menu .toggle-btn {
@@ -46,6 +52,7 @@ body {
   padding-left: 10px;
   padding-right: 10px;
   vertical-align: middle;
+  float: right;
 }
 
 .nav-side-menu li i.sidebar-icon {
