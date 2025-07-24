@@ -3,9 +3,37 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Ajax com jQuery</title>
+		<!-- eruda via CDN -->
+		<script src="https://cdn.jsdelivr.net/npm/eruda@2"></script>
+		<script>
+			eruda.init();
+			eruda.show();
+		</script>
+		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>	
+
+		<script>
+			$(document).ready(() => {
+				$('button').on('click', (e) => {
+					e.preventDefault()
+
+					let dadosForm = $('form').serialize();
+
+					// AJAX
+					$.ajax({
+						type: 'get',
+						url: 'app.js',
+						data: dadosForm, // dados do formulário atribuídos á uma variável
+						dataType: 'json',
+						success: dados => { console.log(dados); },
+						error: erro => { console.log(erro); }
+					});
+				});
+
+			});
+		</script>
 	</head>
 
 	<body>
@@ -15,6 +43,9 @@
 	    		<div class="col">
 	    			<form>
 	    				<div class="form-group">
+			
+			
+			
 							<input type="text" name="nome" placeholder="Nome" class="form-control" />
 						</div>
 						
@@ -40,10 +71,10 @@
 						
 						<div class="form-group">
 							<div class="form-check form-check-inline">
-								<input type="checkbox" name="interesses" value="php" class="form-check-input"><label class="form-check-label mr-3">PHP</label>
-								<input type="checkbox" name="interesses" value="js" class="form-check-input"><label class="form-check-label mr-3">JavaScript</label>
-								<input type="checkbox" name="interesses" value="NodeJS" class="form-check-input"><label class="form-check-label mr-3">NodeJS</label>
-								<input type="checkbox" name="interesses" value="MongoDB" class="form-check-input"><label class="form-check-label mr-3">MongoDB</label>
+								<input type="checkbox" name="interesses[]" value="php" class="form-check-input"><label class="form-check-label mr-3">PHP</label>
+								<input type="checkbox" name="interesses[]" value="js" class="form-check-input"><label class="form-check-label mr-3">JavaScript</label>
+								<input type="checkbox" name="interesses[]" value="NodeJS" class="form-check-input"><label class="form-check-label mr-3">NodeJS</label>
+								<input type="checkbox" name="interesses[]" value="MongoDB" class="form-check-input"><label class="form-check-label mr-3">MongoDB</label>
 							</div>
 						</div>
 						

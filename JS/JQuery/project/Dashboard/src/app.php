@@ -35,7 +35,7 @@ class Conexao {
 			);
 
 			//
-			$conexao->exec('set charset set utf8');
+			$conexao->exec('SET CHARSET SET utf8');
 
 			return $conexao;
 
