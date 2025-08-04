@@ -20,6 +20,24 @@ class Route extends Bootstrap {
 			'action' => 'inscreverse'
 		);
 
+		$routes['registrar'] = array(
+			'route' => '/registrar',
+			'controller' => 'indexController',
+			'action' => 'registrar'
+		);
+
+		$routes['autenticar'] = array(
+			'route' => '/auth',
+			'controller' => 'AuthController',
+			'action' => 'autenticar'
+		);
+
+		$routes['timeline'] = array(
+			'route' => '/timeline',
+			'controller' => 'AppController',
+			'action' => 'timeline'
+		);
+
 		$this->setRoutes($routes);
 	}
 
