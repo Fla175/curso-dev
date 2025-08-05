@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-// Os recursos do miniframework
+//os recursos do miniframework
 use MF\Controller\Action;
 use MF\Model\Container;
 
@@ -15,6 +15,12 @@ class IndexController extends Action {
 	}
 
 	public function inscreverse() {
+
+		$this->view->usuario = array(
+				'nome' => '',
+				'email' => '',
+				'senha' => '',
+			);
 
 		$this->view->erroCadastro = false;
 
@@ -29,35 +35,26 @@ class IndexController extends Action {
 		$usuario->__set('email', $_POST['email']);
 		$usuario->__set('senha', $_POST['senha']);
 
+		
 		if($usuario->validarCadastro() && count($usuario->getUsuarioPorEmail()) == 0) {
-			
-			$usuario->salvar();
+		
+				$usuario->salvar();
 
-			$this->render('cadastro');
+				$this->render('cadastro');
+
 		} else {
 
-			$this->view->usuario = [
+			$this->view->usuario = array(
 				'nome' => $_POST['nome'],
 				'email' => $_POST['email'],
-				'senha' => $_POST['senha']
-			];
+				'senha' => $_POST['senha'],
+			);
 
 			$this->view->erroCadastro = true;
+
 			$this->render('inscreverse');
 		}
-	}
 
-	public function login() {
-		$this->render('login');
-
-		$usuario->__get('senha');
-		$hash = password_hash($this->__get('senha'), PASSWORD_BCRYPT);
-
-		if (password_verify($this->__get('senha'), $hash)) {
-    		echo "Senha válida!";
-		} else {
-    		echo "Senha inválida!";
-		}
 	}
 
 }

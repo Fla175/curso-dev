@@ -1,12 +1,12 @@
 {
-	"name": "miniframework",
+	"name": "fla175/twitter-clone",
 	"require": {
 		"php": ">= 7.0"
 	},
 	"authors": [
 		{
-			"name": "Jorge Sant Ana",
-			"email": "jorge@teste.com.br"
+			"name": "fla175",
+			"email": "flaviofpomin@gmail.com"
 		}
 	],
 	"autoload": {
