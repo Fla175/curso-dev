@@ -1,0 +1,7 @@
+POST http://localhost:5003/usuarios
+Content-Type: application/json
+
+{
+    "nome": "Flávio Freires Pomin",
+    "email": "flaviofpomin@gmail.com"
+}

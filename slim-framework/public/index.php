@@ -7,10 +7,8 @@ use App\Application\Handlers\ShutdownHandler;
 use App\Application\ResponseEmitter\ResponseEmitter;
 use App\Application\Settings\SettingsInterface;
 use DI\ContainerBuilder;
-use Slim\Factory\ServerRequestCreatorFactory;
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
+use Slim\Factory\ServerRequestCreatorFactory;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -82,11 +80,3 @@ $errorMiddleware->setDefaultErrorHandler($errorHandler);
 $response = $app->handle($request);
 $responseEmitter = new ResponseEmitter();
 $responseEmitter->emit($response);
-
-$app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
-    $name = $args['name'];
-    $response->getBody()->write("Hello, $name");
-    return $response;
-});
-
-$app->run();

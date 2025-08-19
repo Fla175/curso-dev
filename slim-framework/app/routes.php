@@ -2,26 +2,31 @@
 
 declare(strict_types=1);
 
-use App\Application\Actions\User\ListUsersAction;
-use App\Application\Actions\User\ViewUserAction;
+// ... (seus 'use' statements aqui)
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
-use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
 return function (App $app) {
-    $app->options('/{routes:.*}', function (Request $request, Response $response) {
-        // CORS Pre-Flight OPTIONS Request Handler
+
+    // Rota GET para listar postagens (já existe)
+    $app->get('/postagens', function(Request $request, Response $response) {
+        $response->getBody()->write("Lista de Postagens");
         return $response;
     });
 
-    $app->get('/', function (Request $request, Response $response) {
-        $response->getBody()->write('Hello world!');
+    // Rota POST para criar uma nova postagem (A ROTA QUE ESTAVA FALTANDO)
+    $app->post('/postagens', function(Request $request, Response $response) {
+        // Obtenha os dados do corpo da requisição (JSON)
+        $dados = $request->getParsedBody();
+        
+        // Verifique se os dados existem e não estão vazios
+        if (!empty($dados)) {
+            $response->getBody()->write("Dados recebidos (JSON): " . json_encode($dados, JSON_PRETTY_PRINT));
+        } else {
+            $response->getBody()->write("Nenhum dado recebido na requisição POST.");
+        }
+        
         return $response;
-    });
-
-    $app->group('/users', function (Group $group) {
-        $group->get('', ListUsersAction::class);
-        $group->get('/{id}', ViewUserAction::class);
     });
 };
