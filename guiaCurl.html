@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-2.0">
+    <title>Guia de uso do cURL para testes de API</title>
+    <!-- Inclui o Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Importa a fonte Inter do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- Ícones para o botão de modo escuro/claro -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2eT0Wj4pT9/P9B1a/A0F6zT7E2B4u3Z52Q2B7yF5e7q7xW0d9V2fXzF4Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Define a estratégia de dark mode para a classe 'dark' no elemento <html> */
+        html.dark {
+            color-scheme: dark;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Estilo da barra de rolagem para navegadores WebKit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #cbd5e1; /* track em modo claro */
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #2D3748; /* track em modo escuro */
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #94a3b8; /* thumb em modo claro */
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #4A5568; /* thumb em modo escuro */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+</head>
+<body class="bg-slate-100 text-slate-900 dark:bg-slate-900 dark:text-slate-100 min-h-screen p-4 md:p-8 flex justify-center items-start">
+    <div class="bg-white dark:bg-slate-800 p-6 md:p-10 rounded-xl shadow-lg max-w-4xl w-full my-8 relative">
+        <!-- Botão de Ativar/Desativar Modo Escuro -->
+        <button id="theme-toggle" class="absolute top-4 right-4 p-2 rounded-full shadow-md bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 transition-colors duration-300">
+            <i class="fas fa-moon hidden dark:block"></i>
+            <i class="fas fa-sun dark:hidden"></i>
+        </button>
+
+        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 text-center">Guia de uso do cURL para testes de API</h1>
+        
+        <p class="text-lg text-slate-700 dark:text-slate-300 mb-6 leading-relaxed">
+            A sintaxe básica do cURL para fazer uma requisição HTTP é:
+        </p>
+        
+        <pre class="bg-slate-200 dark:bg-slate-900 text-slate-800 dark:text-green-300 p-4 rounded-md overflow-x-auto mb-6"><code>curl [opções] [URL]</code></pre>
+        
+        <div class="border-t border-slate-300 dark:border-slate-700 my-8"></div>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4 text-sky-600 dark:text-sky-400">1. Requisição GET</h2>
+        <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+            O método <strong class="font-bold">GET</strong> é usado para solicitar dados de um recurso específico. É o método padrão do cURL, então você não precisa especificar o verbo HTTP explicitamente.
+        </p>
+        <p class="text-slate-700 dark:text-slate-300 font-bold mb-2">Exemplo:</p>
+        <pre class="bg-slate-200 dark:bg-slate-900 text-slate-800 dark:text-green-300 p-4 rounded-md overflow-x-auto"><code>curl https://api.exemplo.com/usuarios/123</code></pre>
+        
+        <p class="text-slate-700 dark:text-slate-300 mt-4 leading-relaxed mb-2">Com opções adicionais:</p>
+        <ul class="list-disc list-inside text-slate-700 dark:text-slate-300">
+            <li class="mb-1"><code class="font-mono text-slate-800 dark:text-green-300">-i</code> ou <code class="font-mono text-slate-800 dark:text-green-300">--include</code>: Inclui os cabeçalhos da resposta na saída.</li>
+            <li class="mb-1"><code class="font-mono text-slate-800 dark:text-green-300">-v</code> ou <code class="font-mono text-slate-800 dark:text-green-300">--verbose</code>: Mostra detalhes da requisição e da resposta, útil para depuração.</li>
+        </ul>
+        <pre class="bg-slate-200 dark:bg-slate-900 text-slate-800 dark:text-green-300 p-4 rounded-md overflow-x-auto mt-4"><code>curl -i -v https://api.exemplo.com/usuarios/123</code></pre>
+
+        <div class="border-t border-slate-300 dark:border-slate-700 my-8"></div>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4 text-sky-600 dark:text-sky-400">2. Requisição POST</h2>
+        <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+            O método <strong class="font-bold">POST</strong> é usado para enviar dados a um servidor para criar um novo recurso. Para enviar dados, você pode usar a opção <code class="font-mono text-slate-800 dark:text-green-300">-d</code> ou <code class="font-mono text-slate-800 dark:text-green-300">--data</code>.
+        </p>
+        <p class="text-slate-700 dark:text-slate-300 font-bold mb-2">Exemplo:</p>
+        <pre class="bg-slate-200 dark:bg-slate-900 text-slate-800 dark:text-green-300 p-4 rounded-md overflow-x-auto"><code>curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{ "nome": "Fulano de Tal", "email": "fulano@exemplo.com" }' \
+  https://api.exemplo.com/usuarios
+</code></pre>
+        <p class="text-slate-700 dark:text-slate-300 mt-4 font-bold mb-2">Explicação dos parâmetros:</p>
+        <ul class="list-disc list-inside text-slate-700 dark:text-slate-300">
+            <li class="mb-1"><code class="font-mono text-slate-800 dark:text-green-300">-X POST</code>: Especifica o verbo HTTP como POST.</li>
+            <li class="mb-1"><code class="font-mono text-slate-800 dark:text-green-300">-H "Content-Type: application/json"</code>: Adiciona um cabeçalho <code class="font-mono text-slate-800 dark:text-green-300">Content-Type</code> para informar ao servidor que o corpo da requisição está no formato JSON.</li>
+            <li class="mb-1"><code class="font-mono text-slate-800 dark:text-green-300">-d</code> ou <code class="font-mono text-slate-800 dark:text-green-300">--data</code>: Envia os dados do corpo da requisição. Se os dados forem um arquivo, você pode usar <code class="font-mono text-slate-800 dark:text-green-300">@nome-do-arquivo.json</code>.</li>
+        </ul>
+
+        <div class="border-t border-slate-300 dark:border-slate-700 my-8"></div>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4 text-sky-600 dark:text-sky-400">3. Requisição PUT</h2>
+        <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+            O método <strong class="font-bold">PUT</strong> é usado para atualizar um recurso existente. A sintaxe é muito similar ao POST, mas você deve especificar o ID do recurso que será atualizado na URL.
+        </p>
+        <p class="text-slate-700 dark:text-slate-300 font-bold mb-2">Exemplo:</p>
+        <pre class="bg-slate-200 dark:bg-slate-900 text-slate-800 dark:text-green-300 p-4 rounded-md overflow-x-auto"><code>curl -X PUT \
+  -H "Content-Type: application/json" \
+  -d '{ "email": "novo_email@exemplo.com" }' \
+  https://api.exemplo.com/usuarios/123</code></pre>
+
+        <div class="border-t border-slate-300 dark:border-slate-700 my-8"></div>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4 text-sky-600 dark:text-sky-400">4. Requisição DELETE</h2>
+        <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+            O método <strong class="font-bold">DELETE</strong> é usado para remover um recurso específico. Normalmente não há corpo na requisição DELETE.
+        </p>
+        <p class="text-slate-700 dark:text-slate-300 font-bold mb-2">Exemplo:</p>
+        <pre class="bg-slate-200 dark:bg-slate-900 text-slate-800 dark:text-green-300 p-4 rounded-md overflow-x-auto"><code>curl -X DELETE https://api.exemplo.com/usuarios/123</code></pre>
+
+        <div class="border-t border-slate-300 dark:border-slate-700 my-8"></div>
+        
+        <h2 class="text-2xl font-bold mt-8 mb-4 text-sky-600 dark:text-sky-400 text-center">Resumo dos principais comandos e opções:</h2>
+        <div class="overflow-x-auto rounded-xl shadow-lg">
+            <table class="w-full text-center border-collapse">
+                <thead class="bg-slate-700">
+                    <tr>
+                        <th class="p-4 font-bold text-lg text-white text-center">Comando</th>
+                        <th class="p-4 font-bold text-lg text-white text-center">Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-slate-800 border-b border-slate-700">
+                        <td class="p-4"><code class="font-mono text-green-300">curl [URL]</code></td>
+                        <td class="p-4"><i class="text-slate-300">Requisição GET simples.</i></td>
+                    </tr>
+                    <tr class="bg-slate-700 border-b border-slate-700">
+                        <td class="p-4"><code class="font-mono text-green-300">-X [VERBO]</code></td>
+                        <td class="p-4"><i class="text-slate-300">Define o verbo HTTP (GET, POST, PUT, DELETE).</i></td>
+                    </tr>
+                    <tr class="bg-slate-800 border-b border-slate-700">
+                        <td class="p-4"><code class="font-mono text-green-300">-d [DADOS]</code></td>
+                        <td class="p-4"><i class="text-slate-300">Envia dados no corpo da requisição (para POST, PUT).</i></td>
+                    </tr>
+                    <tr class="bg-slate-700 border-b border-slate-700">
+                        <td class="p-4"><code class="font-mono text-green-300">-H "[CABEÇALHO]"</code></td>
+                        <td class="p-4"><i class="text-slate-300">Adiciona um cabeçalho à requisição.</i></td>
+                    </tr>
+                    <tr class="bg-slate-800 border-b border-slate-700">
+                        <td class="p-4"><code class="font-mono text-green-300">-i</code></td>
+                        <td class="p-4"><i class="text-slate-300">Exibe os cabeçalhos da resposta.</i></td>
+                    </tr>
+                    <tr class="bg-slate-700 border-b border-slate-700">
+                        <td class="p-4"><code class="font-mono text-green-300">-v</code></td>
+                        <td class="p-4"><i class="text-slate-300">Modo detalhado (verbose) para depuração.</i></td>
+                    </tr>
+                    <tr class="bg-slate-800 border-b border-slate-700">
+                        <td class="p-4"><code class="font-mono text-green-300">-o [ARQUIVO]</code></td>
+                        <td class="p-4"><i class="text-slate-300">Salva a resposta em um arquivo.</i></td>
+                    </tr>
+                    <tr class="bg-slate-700">
+                        <td class="p-4"><code class="font-mono text-green-300">-u [USUARIO:SENHA]</code></td>
+                        <td class="p-4"><i class="text-slate-300">Adiciona autenticação básica.</i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Verifica a preferência do usuário ou o localStorage no carregamento
+        const isDarkMode = localStorage.getItem('darkMode') === 'true' || window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (isDarkMode) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('darkMode', 'false');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('darkMode', 'true');
+            }
+        });
+    </script>
+</body>
+</html>
