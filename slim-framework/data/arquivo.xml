@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <product>
+        <item>
+            <name>Samsung GalaxyBook 4</name>
+            <price> R$ 4998.00</price>
+        </item>
+        <item>
+            <name> | Samsung Galaxy Note 20 Ultra</name>
+            <price> R$ 2099.99</price>
+        </item>
+        <item>
+            <name> | Bebedouro Esmaltec</name>
+            <price> R$ 1559.99</price>
+        </item>
+    </product>
+</root>

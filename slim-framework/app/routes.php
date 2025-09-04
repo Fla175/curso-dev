@@ -1,64 +1,90 @@
 <?php
-
 declare(strict_types=1);
 
+use App\Application\Settings\SettingsInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\RequestHandlerInterface;
 use Slim\App;
+use Slim\Views\Twig;
+use MyApp\View;
 
 return function (App $app) {
 
-    $app->get('/postagens', function(Request $request, Response $response) {
-        $response->getBody()->write("Lista de Postagens");
+    // Tipos de respostas:
+    // 1. Header (Cabeçalho); 2. Texto; 3. JSON; 4. XML
+
+    // Header:
+    $app->get('/header', function (Request $request, Response $response) {
+        $response->getBody()->write('Esse é um retorno header, mas não é este texto.');
+        return $response->withHeader('allow', 'PUT')->withAddedHeader('Content-Length', 57);
+    });
+
+    // Texto:
+    $app->get('/text', function (Request $request, Response $response) {
+        $response->getBody()->write('Esse é um retorno de texto.');
         return $response;
     });
 
-    $app->post('/postagens', function(Request $request, Response $response) {
-        $dados = $request->getParsedBody();
+    // JSON:
+    $app->get('/json', function (Request $request, Response $response) {
+        // 1. Defina os dados que você quer retornar
+        $data = [
+            'nome' => 'FLávio Freires Pomin',
+            'idade' => 12
+        ];
 
-        if (!empty($dados)) {
-            $response->getBody()->write("Dados recebidos (JSON): " . json_encode($dados, JSON_PRETTY_PRINT));
-        } else {
-            $response->getBody()->write("Nenhum dado recebido na requisição POST.");
-        }
-        
-        return $response;
+        // 2. Converta o array para uma string JSON
+        $payload = json_encode($data);
+
+        // 3. Adicione o cabeçalho Content-Type e escreva o JSON na resposta
+        $response->getBody()->write($payload);
+
+        return $response->withHeader('Content-Type', 'application/json');
     });
 
-    // método curl para a rota /usuarios/adiciona: curl -X POST -H "Content-Type: application/json" -d '{"id": 1, "nome": "Flavio", "email": "flavio@exemplo.com"}' http://10.20.31.152:8080/proxy/5040/usuarios/adiciona
-
-    $app->post('/usuarios/adiciona', function(Request $request, Response $response) {
-
-        $post = $request->getParsedBody();
-        $id = $post['id'];
-        $nome = $post['nome'];
-        $email = $post['email'];
-
-        $response->getBody()->write("Sucesso ao adicionar" . "                                                                             ");
-        return $response;
-    });
-
-    // método curl para a rota /usuarios/atualiza: curl -X PUT -H "Content-Type: application/json" -d '{"id": 1, "nome": "Flavio Atualizado", "email": "flavio.novo@exemplo.com"}' http://10.20.31.152:8080/proxy/5040/usuarios/atualiza/1
-
-    $app->put('/usuarios/atualiza/{id}', function(Request $request, Response $response) {
-
-        $post = $request->getParsedBody();
-        $id = $post['id'];
-        $nome = $post['nome'];
-        $email = $post['email'];
-
-        $response->getBody()->write("Sucesso ao atualizar: " . $id . "                                                                          ");
-        return $response;
-    });
-
-    // método curl para a rota /usuarios/remove: curl -X DELETE http://10.20.31.152:8080/proxy/5040/usuarios/remove/1
-
-    $app->delete('/usuarios/remove/{id}', function(Request $request, Response $response) {
-        $id = $request->getAttribute('id');
-
-        $response->getBody()->write("Sucesso ao remover: " . $id . "                                                                            ");
+    // XML:
+    $app->get('/xml', function (Request $request, Response $response) {
+        $xml = file_get_contents(__DIR__ . '/../data/arquivo.xml');
+        $response->getBody()->write($xml);
         return $response;
     });
 
 };
 
+    // Middleware:
+//     $app->add(function (Request $request, RequestHandlerInterface $handler) : Response {
+//         // Escreve algo na resposta antes da ação principal
+//         $response = $handler->handle($request);
+
+//         // Acessa o corpo da resposta e o modifica
+//         $body = (string) $response->getBody();
+//         $response->getBody()->rewind();
+//         $response->getBody()->write('Início da camada 1 + ' . $body . ' + Fim da camada 1');
+
+//         // Retorna a resposta
+//         return $response;
+//     });
+
+//     $app->add(function (Request $request, RequestHandlerInterface $handler) : Response { // Corrigido aqui
+//         // Escreve algo na resposta antes da ação principal
+//         $response = $handler->handle($request);
+
+//         // Acessa o corpo da resposta e o modifica
+//         $body = (string) $response->getBody();
+//         $response->getBody()->rewind();
+//         $response->getBody()->write('Início da camada 2 + ' . $body . ' + Fim da camada 2');
+
+//         // Retorna a resposta
+//         return $response;
+//     });
+
+//     $app->get('/usuarios', function (Request $request, Response $response) {
+//         $response->getBody()->write('Ação Principal: Lista de Usuários');
+//         return $response;
+//     });
+
+//     $app->get('/postagens', function (Request $request, Response $response) {
+//         $response->getBody()->write('Ação Principal: Lista de Postagens');
+//         return $response;
+//     });
