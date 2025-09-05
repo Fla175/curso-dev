@@ -1,90 +1,199 @@
 <?php
+
 declare(strict_types=1);
 
 use App\Application\Settings\SettingsInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Illuminate\Database\Capsule\Manager as Capsule;
 use Psr\Http\Server\RequestHandlerInterface;
-use Slim\App;
 use Slim\Views\Twig;
 use MyApp\View;
+use Slim\App;
 
 return function (App $app) {
 
-    // Tipos de respostas:
-    // 1. Header (Cabeçalho); 2. Texto; 3. JSON; 4. XML
+$container = $app->getContainer();
 
-    // Header:
-    $app->get('/header', function (Request $request, Response $response) {
-        $response->getBody()->write('Esse é um retorno header, mas não é este texto.');
-        return $response->withHeader('allow', 'PUT')->withAddedHeader('Content-Length', 57);
-    });
+// Acessa o contêiner e define o serviço 'db' usando set()
+$container->set('db', function() use ($container) {
 
-    // Texto:
-    $app->get('/text', function (Request $request, Response $response) {
-        $response->getBody()->write('Esse é um retorno de texto.');
-        return $response;
-    });
+$capsule = new Capsule;
 
-    // JSON:
-    $app->get('/json', function (Request $request, Response $response) {
-        // 1. Defina os dados que você quer retornar
-        $data = [
-            'nome' => 'FLávio Freires Pomin',
-            'idade' => 12
-        ];
+$capsule->addConnection([
 
-        // 2. Converta o array para uma string JSON
-        $payload = json_encode($data);
+'driver' => 'mysql',
+'host' => 'localhost',
+'database' => 'slim',
+'username' => 'root',
+'password' => '',
+'charset' => 'utf8',
+'collation' => 'utf8_unicode_ci',
+'prefix' => '',
 
-        // 3. Adicione o cabeçalho Content-Type e escreva o JSON na resposta
-        $response->getBody()->write($payload);
+]);
 
-        return $response->withHeader('Content-Type', 'application/json');
-    });
+$capsule->setAsGlobal();
 
-    // XML:
-    $app->get('/xml', function (Request $request, Response $response) {
-        $xml = file_get_contents(__DIR__ . '/../data/arquivo.xml');
-        $response->getBody()->write($xml);
-        return $response;
-    });
+$capsule->bootEloquent();
+
+return $capsule;
+
+});
+
+$app->get('/usuarios', function (Request $request, Response $response) {
+
+// Acessa o serviço 'db' do contêiner
+$db = $this->get('db')->schema();
+$db->dropIfExists('usuarios');
+$db->create('usuarios', function($table) {
+$table->increments('id');
+$table->string('nome');
+$table->string('email');
+$table->timestamps();
+
+});
+
+
+// Retorna uma resposta, pois toda rota do Slim 4 deve retornar uma Response
+$response->getBody()->write('Tabela de usuários criada com sucesso!');
+
+return $response;
+
+});
 
 };
 
-    // Middleware:
-//     $app->add(function (Request $request, RequestHandlerInterface $handler) : Response {
-//         // Escreve algo na resposta antes da ação principal
-//         $response = $handler->handle($request);
 
-//         // Acessa o corpo da resposta e o modifica
-//         $body = (string) $response->getBody();
-//         $response->getBody()->rewind();
-//         $response->getBody()->write('Início da camada 1 + ' . $body . ' + Fim da camada 1');
+// Tipos de respostas:
 
-//         // Retorna a resposta
-//         return $response;
-//     });
+// 1. Header (Cabeçalho); 2. Texto; 3. JSON; 4. XML
 
-//     $app->add(function (Request $request, RequestHandlerInterface $handler) : Response { // Corrigido aqui
-//         // Escreve algo na resposta antes da ação principal
-//         $response = $handler->handle($request);
+// // Header:
+// $app->get('/header', function (Request $request, Response $response) {
 
-//         // Acessa o corpo da resposta e o modifica
-//         $body = (string) $response->getBody();
-//         $response->getBody()->rewind();
-//         $response->getBody()->write('Início da camada 2 + ' . $body . ' + Fim da camada 2');
+// $response->getBody()->write('Esse é um retorno header, mas não é este texto.');
 
-//         // Retorna a resposta
-//         return $response;
-//     });
+// return $response->withHeader('allow', 'PUT')->withAddedHeader('Content-Length', 57);
 
-//     $app->get('/usuarios', function (Request $request, Response $response) {
-//         $response->getBody()->write('Ação Principal: Lista de Usuários');
-//         return $response;
-//     });
+// });
 
-//     $app->get('/postagens', function (Request $request, Response $response) {
-//         $response->getBody()->write('Ação Principal: Lista de Postagens');
-//         return $response;
-//     });
+
+// // Texto:
+
+// $app->get('/text', function (Request $request, Response $response) {
+
+// $response->getBody()->write('Esse é um retorno de texto.');
+
+// return $response;
+
+// });
+
+
+// // JSON:
+
+// $app->get('/json', function (Request $request, Response $response) {
+
+// // 1. Defina os dados que você quer retornar
+
+// $data = [
+
+// 'nome' => 'FLávio Freires Pomin',
+
+// 'idade' => 12
+
+// ];
+
+
+// // 2. Converta o array para uma string JSON
+
+// $payload = json_encode($data);
+
+
+// // 3. Adicione o cabeçalho Content-Type e escreva o JSON na resposta
+
+// $response->getBody()->write($payload);
+
+
+// return $response->withHeader('Content-Type', 'application/json');
+
+// });
+
+
+// // XML:
+
+// $app->get('/xml', function (Request $request, Response $response) {
+
+// $xml = file_get_contents(__DIR__ . '/../data/arquivo.xml');
+
+// $response->getBody()->write($xml);
+
+// return $response;
+
+// });
+
+
+// Middleware:
+
+// $app->add(function (Request $request, RequestHandlerInterface $handler) : Response {
+
+// // Escreve algo na resposta antes da ação principal
+
+// $response = $handler->handle($request);
+
+
+// // Acessa o corpo da resposta e o modifica
+
+// $body = (string) $response->getBody();
+
+// $response->getBody()->rewind();
+
+// $response->getBody()->write('Início da camada 1 + ' . $body . ' + Fim da camada 1');
+
+
+// // Retorna a resposta
+
+// return $response;
+
+// });
+
+
+// $app->add(function (Request $request, RequestHandlerInterface $handler) : Response { // Corrigido aqui
+
+// // Escreve algo na resposta antes da ação principal
+
+// $response = $handler->handle($request);
+
+
+// // Acessa o corpo da resposta e o modifica
+
+// $body = (string) $response->getBody();
+
+// $response->getBody()->rewind();
+
+// $response->getBody()->write('Início da camada 2 + ' . $body . ' + Fim da camada 2');
+
+
+// // Retorna a resposta
+
+// return $response;
+
+// });
+
+
+// $app->get('/usuarios', function (Request $request, Response $response) {
+
+// $response->getBody()->write('Ação Principal: Lista de Usuários');
+
+// return $response;
+
+// });
+
+
+// $app->get('/postagens', function (Request $request, Response $response) {
+
+// $response->getBody()->write('Ação Principal: Lista de Postagens');
+
+// return $response;
+
+// });
