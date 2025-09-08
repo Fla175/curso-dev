@@ -2,29 +2,32 @@
 
 declare(strict_types=1);
 
-use App\Application\Settings\SettingsInterface;
 use DI\ContainerBuilder;
-use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
-use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
-use Psr\Log\LoggerInterface;
+use Illuminate\Database\Capsule\Manager as Capsule;
+use App\Application\Settings\SettingsInterface;
+use App\Application\Settings\Settings;
 
 return function (ContainerBuilder $containerBuilder) {
+    // Mapeia a interface para a classe concreta de configurações
     $containerBuilder->addDefinitions([
-        LoggerInterface::class => function (ContainerInterface $c) {
+        SettingsInterface::class => function (ContainerInterface $c) {
+            return new Settings($c->get('settings'));
+        },
+    ]);
+
+    // O ponto crucial: mapeia a classe `Capsule` para a instância que você cria.
+    $containerBuilder->addDefinitions([
+        Capsule::class => function (ContainerInterface $c) {
             $settings = $c->get(SettingsInterface::class);
+            $dbSettings = $settings->get('db');
 
-            $loggerSettings = $settings->get('logger');
-            $logger = new Logger($loggerSettings['name']);
+            $capsule = new Capsule;
+            $capsule->addConnection($dbSettings);
+            $capsule->setAsGlobal();
+            $capsule->bootEloquent();
 
-            $processor = new UidProcessor();
-            $logger->pushProcessor($processor);
-
-            $handler = new StreamHandler($loggerSettings['path'], $loggerSettings['level']);
-            $logger->pushHandler($handler);
-
-            return $logger;
+            return $capsule;
         },
     ]);
 };

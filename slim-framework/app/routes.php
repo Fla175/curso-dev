@@ -2,66 +2,115 @@
 
 declare(strict_types=1);
 
-use App\Application\Settings\SettingsInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Illuminate\Database\Capsule\Manager as Capsule;
-use Psr\Http\Server\RequestHandlerInterface;
-use Slim\Views\Twig;
-use MyApp\View;
 use Slim\App;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 return function (App $app) {
 
-$container = $app->getContainer();
+    // Acessa o contêiner de injeção de dependência.
+    $container = $app->getContainer();
 
-// Acessa o contêiner e define o serviço 'db' usando set()
-$container->set('db', function() use ($container) {
+    // Cria a tabela "usuarios" no bd
+    $app->get('/usuarios', function (Request $request, Response $response) use ($container) {
+        
+        // Acessa a instância do Eloquent do contêiner.
+        $db = $container->get(Capsule::class);
 
-$capsule = new Capsule;
+        $schema_usuarios = $db->schema();
 
-$capsule->addConnection([
+        // Lógica da criação da tabela ("->schema()" serve justamente para criar ou dropar tabelas, databases, entre outros).
+        $schema_usuarios->dropIfExists('usuarios');
+        $schema_usuarios->create('usuarios', function ($table) {
+            $table->increments('id');
+            $table->string('nome');
+            $table->string('email');
+            $table->timestamps();
+        });
 
-'driver' => 'mysql',
-'host' => 'localhost',
-'database' => 'slim',
-'username' => 'root',
-'password' => '',
-'charset' => 'utf8',
-'collation' => 'utf8_unicode_ci',
-'prefix' => '',
+        $response->getBody()->write('Tabela de usuários criada com sucesso!<br><br><br><br><br> // Erro de Deprecated (Relaxa, ele late, mas não morde)<br>');
+        return $response;
 
-]);
+    });
 
-$capsule->setAsGlobal();
+    // Insere um usuário na tabela "usuarios"
+    $app->get('/insert', function (Request $request, Response $response) use ($container) {
+        
+        // Acessa a instância do Eloquent do contêiner.
+        $db = $container->get(Capsule::class);
 
-$capsule->bootEloquent();
+        $table_usuarios = $table_usuarios;
 
-return $capsule;
+        // Lógica para inserção de dados na tabela (para casos de inserção de dados, é utilizado "->table('tabela selecionada')->insert([
+            // 'exemplo1' => 'valor1',
+            // 'exemplo2' => 'valor2',
+            // etc...
+        // ]);").
+        $table_usuarios->insert([
+            'nome' => 'chuchu',
+            'email' => 'chuchu@example.com'
+        ]);
 
-});
+        $response->getBody()->write('Usuários inseridos com sucesso!<br><br><br><br><br> // Erro de Deprecated (Relaxa, ele late, mas não morde)<br>');
+        return $response;
 
-$app->get('/usuarios', function (Request $request, Response $response) {
+    });
 
-// Acessa o serviço 'db' do contêiner
-$db = $this->get('db')->schema();
-$db->dropIfExists('usuarios');
-$db->create('usuarios', function($table) {
-$table->increments('id');
-$table->string('nome');
-$table->string('email');
-$table->timestamps();
+    // Atualiza os dados de um usuário na tabela "usuarios"
+    $app->get('/update', function (Request $request, Response $response) use ($container) {
+        
+        // Acessa a instância do Eloquent do contêiner.
+        $db = $container->get(Capsule::class);
 
-});
+        $table_usuarios = $table_usuarios;
 
+        // Lógica para atualização de dados na tabela (para casos de atualização de dados, é utilizado "->table('tabela-selecionada')->where('example', 'qualquer-valor')->update([
+            // 'exemplo1' => 'outro-valor1',
+            // 'exemplo2' => 'outro-valor2',
+            // etc...
+        // ]);").
+        $table_usuarios->where('id', 1)->update([
+            'nome' => 'Flavio',
+            'email' => 'floabrio.exempfro@firsti.exemplo.com.net'
+        ]);
 
-// Retorna uma resposta, pois toda rota do Slim 4 deve retornar uma Response
-$response->getBody()->write('Tabela de usuários criada com sucesso!');
+        $response->getBody()->write('Usuários atualizados com sucesso!<br><br><br><br><br> // Erro de Deprecated (Relaxa, ele late, mas não morde)<br>');
+        return $response;
 
-return $response;
+    });
 
-});
+    // Deleta os dados de um usuário na tabela "usuarios"
+    $app->get('/delete', function (Request $request, Response $response) use ($container) {
+        
+        // Acessa a instância do Eloquent do contêiner.
+        $db = $container->get(Capsule::class);
 
+        $table_usuarios = $table_usuarios;
+
+        // Lógica para remoção de dados na tabela (para casos de remoção de dados, é utilizado "->table('tabela-selecionada')->where('example', 'qualquer-valor')->delete();").
+        $table_usuarios->where('id', 3)->delete();
+
+        $response->getBody()->write('Usuários removidos com sucesso!<br><br><br><br><br> // Erro de Deprecated (Relaxa, ele late, mas não morde)<br>');
+        return $response;
+
+    });
+
+    // Lista os dados de um usuário na tabela "usuarios"
+    $app->get('/list', function (Request $request, Response $response) use ($container) {
+        
+        // Acessa a instância do Eloquent do contêiner.
+        $db = $container->get(Capsule::class);
+
+        // Lógica para listagem de dados na tabela (para casos de listagem de dados, é utilizado "->table('tabela-selecionada')->get();").
+        $usuarios = $db->table('usuarios')->get();
+
+        $usuarios;
+
+        $response->getBody()->write('Usuários removidos com sucesso!<br><br><br><br><br> // Erro de Deprecated (Relaxa, ele late, mas não morde)<br>');
+        return $response;
+
+    });
 };
 
 
