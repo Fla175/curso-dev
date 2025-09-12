@@ -40,7 +40,7 @@ return function (App $app) {
         // Acessa a instância do Eloquent do contêiner.
         $db = $container->get(Capsule::class);
 
-        $table_usuarios = $table_usuarios;
+        $table_usuarios = $db->table('usuarios');
 
         // Lógica para inserção de dados na tabela (para casos de inserção de dados, é utilizado "->table('tabela selecionada')->insert([
             // 'exemplo1' => 'valor1',
@@ -48,8 +48,8 @@ return function (App $app) {
             // etc...
         // ]);").
         $table_usuarios->insert([
-            'nome' => 'chuchu',
-            'email' => 'chuchu@example.com'
+            'nome' => 'otto de exemplo',
+            'email' => 'exampleotto@maisexample.com'
         ]);
 
         $response->getBody()->write('Usuários inseridos com sucesso!<br><br><br><br><br> // Erro de Deprecated (Relaxa, ele late, mas não morde)<br>');
@@ -63,7 +63,7 @@ return function (App $app) {
         // Acessa a instância do Eloquent do contêiner.
         $db = $container->get(Capsule::class);
 
-        $table_usuarios = $table_usuarios;
+        $table_usuarios = $db->table('usuarios');
 
         // Lógica para atualização de dados na tabela (para casos de atualização de dados, é utilizado "->table('tabela-selecionada')->where('example', 'qualquer-valor')->update([
             // 'exemplo1' => 'outro-valor1',
@@ -86,7 +86,7 @@ return function (App $app) {
         // Acessa a instância do Eloquent do contêiner.
         $db = $container->get(Capsule::class);
 
-        $table_usuarios = $table_usuarios;
+        $table_usuarios = $db->table('usuarios');
 
         // Lógica para remoção de dados na tabela (para casos de remoção de dados, é utilizado "->table('tabela-selecionada')->where('example', 'qualquer-valor')->delete();").
         $table_usuarios->where('id', 3)->delete();
@@ -105,9 +105,13 @@ return function (App $app) {
         // Lógica para listagem de dados na tabela (para casos de listagem de dados, é utilizado "->table('tabela-selecionada')->get();").
         $usuarios = $db->table('usuarios')->get();
 
-        $usuarios;
+        foreach ($usuarios as $usuario) {
+            echo 'ID: ' . $usuario->id . '<br>';
+            echo 'Nome: ' . $usuario->nome . '<br>';
+            echo 'E-Mail: ' . $usuario->email . '<br><br><br>';
+        };
 
-        $response->getBody()->write('Usuários removidos com sucesso!<br><br><br><br><br> // Erro de Deprecated (Relaxa, ele late, mas não morde)<br>');
+        $response->getBody()->write('Usuários listados com sucesso!<br><br><hr><br><br> // Erro de Deprecated (Relaxa, ele late, mas não morde)<br>');
         return $response;
 
     });
@@ -115,8 +119,11 @@ return function (App $app) {
 
 
 // Tipos de respostas:
-
-// 1. Header (Cabeçalho); 2. Texto; 3. JSON; 4. XML
+// ----------------------
+// 1. Header (Cabeçalho);
+// 2. Text;
+// 3. JSON;
+// 4. XML;
 
 // // Header:
 // $app->get('/header', function (Request $request, Response $response) {
