@@ -8,4 +8,4 @@
     É uma estrutura de software com um conjunto de melhores práticas denominadas `constraints` que são utilizadas para criar web-services.
 
 - `RESTful`
-    Determina que seu sistema utilize dessas práticas para se comunicar, seguindo a especificação da arquitetura.
+    Significa que sua API utiliza destas boas práticas.
