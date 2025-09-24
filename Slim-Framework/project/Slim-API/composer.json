@@ -1,6 +1,6 @@
 {
-    "name": "Slim-API",
-    "description": "Uma API feita com a base slim-skeleton",
+    "name": "slim/slim-api",
+    "description": "Uma API tendo como base  slim/slim-skeleton",
     "keywords": ["microframework", "rest", "router", "psr7"],
     "homepage": "http://github.com/slimphp/Slim-Skeleton",
     "license": "MIT",
@@ -11,17 +11,18 @@
     ],
     "require": {
         "php": ">=5.6",
-        "slim/slim": "^3.1",
-        "slim/php-view": "^2.0",
+        "firebase/php-jwt": "^5.0",
+        "illuminate/database": "^8.0",
         "monolog/monolog": "^1.17",
-        "illuminate/database": "^8.0"
+        "slim/php-view": "^2.0",
+        "slim/slim": "^3.12"
     },
     "require-dev": {
         "phpunit/phpunit": ">=5.0"
     },
-    "autoload-dev": {
+    "autoload": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "App\\": "App/"
         }
     },
     "config": {
@@ -29,7 +30,7 @@
         "sort-packages": true
     },
     "scripts": {
-        "start": "php -S 0.0.0.0:8080 -t public/",
+        "start": "php -S 0.0.0.0:5040 -t public/",
         "test": "phpunit"
     }
 }

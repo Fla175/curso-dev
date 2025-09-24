@@ -7,11 +7,20 @@ use Slim\Http\Response;
 return function (App $app) {
     $container = $app->getContainer();
 
-    $app->get('/[{name}]', function (Request $request, Response $response, array $args) use ($container) {
-        // Sample log message
-        $container->get('logger')->info("Slim-Skeleton '/' route");
+    $app->options('/{routes:.+}', function ($request, $response, $args) {
+        return $response;
+    });
 
-        // Render index view
-        return $container->get('renderer')->render($response, 'index.phtml', $args);
+    // Executa a autenticação passando $app
+    $auth = require __DIR__ . '/routes/auth.php';
+    $auth($app);
+
+    // Executa a função de produtos passando $app
+    $products = require __DIR__ . '/routes/products.php';
+    $products($app);
+
+    $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {
+        $handler = $this->notFoundHandler; // handle using the default Slim page not found handler
+        return $handler($req, $res);
     });
 };

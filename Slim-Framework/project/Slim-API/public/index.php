@@ -1,7 +1,6 @@
 <?php
 if (PHP_SAPI == 'cli-server') {
-    // To help the built-in PHP dev server, check if the request was actually for
-    // something which should probably be served as a static file
+    // Built-in PHP dev server: serve arquivos estáticos diretamente
     $url  = parse_url($_SERVER['REQUEST_URI']);
     $file = __DIR__ . $url['path'];
     if (is_file($file)) {
@@ -9,25 +8,35 @@ if (PHP_SAPI == 'cli-server') {
     }
 }
 
+// Carrega o Composer autoload **primeiro**
 require __DIR__ . '/../vendor/autoload.php';
 
+// Inicia sessão
 session_start();
 
-// Instantiate the app
+// Configurações (settings.php)
 $settings = require __DIR__ . '/../src/settings.php';
+
+// Instancia o App Slim
 $app = new \Slim\App($settings);
 
-// Set up dependencies
+// Registra dependências (logger, renderer, db, etc.)
 $dependencies = require __DIR__ . '/../src/dependencies.php';
 $dependencies($app);
 
-// Register middleware
+// Registra middlewares
 $middleware = require __DIR__ . '/../src/middleware.php';
 $middleware($app);
 
-// Register routes
+// Setando $container
+$container = $app->getContainer();
+
+// Dando acesso ao banco de dados para o Eloquent ORM
+$db = $container->get('db');
+
+// Registra rotas
 $routes = require __DIR__ . '/../src/routes.php';
 $routes($app);
 
-// Run app
+// Roda o App
 $app->run();

@@ -1,23 +1,34 @@
 <?php
-
 use Slim\App;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-$capsule = new Capsule;
+return function (App $app) {
+    $container = $app->getContainer();
 
-$capsule->addConnection([
-    'driver'    => 'mysql',
-    'host'      => '127.0.0.1',
-    'database'  => 'slim',
-    'username'  => 'root',
-    'password'  => '',
-    'charset'   => 'utf8',
-    'collation' => 'utf8_unicode_ci',
-    'prefix'    => '',
-]);
+    // View renderer
+    $container['renderer'] = function ($c) {
+        $settings = $c->get('settings')['renderer'];
+        return new \Slim\Views\PhpRenderer($settings['template_path']);
+    };
 
-// Tornar o Capsule disponível globalmente via static methods
-$capsule->setAsGlobal();
+    // Monolog
+    $container['logger'] = function ($c) {
+        $settings = $c->get('settings')['logger'];
+        $logger = new Logger($settings['name']);
+        $logger->pushProcessor(new \Monolog\Processor\UidProcessor());
+        $logger->pushHandler(new StreamHandler($settings['path'], $settings['level']));
+        return $logger;
+    };
 
-// Inicializar o Eloquent ORM
-$capsule->bootEloquent();
+    // Eloquent / Illuminate Database
+    $container['db'] = function ($c) {
+        $capsule = new Capsule;
+        $dbSettings = $c->get('settings')['db'];
+        $capsule->addConnection([$dbSettings]);
+        $capsule->setAsGlobal();
+        $capsule->bootEloquent();
+        return $capsule;
+    };
+};
