@@ -1,8 +1,20 @@
 <?php
 
 use Slim\App;
+// Use para container
 
 return function (App $app) {
+    $container = $app->getContainer();
+
+    // Autenticação com JWT
+    $app->add(new Tuupola\Middleware\JwtAuthentication([
+        "regexp" => "/(.*)/",
+        "path" => "/api",
+        "ignore" => "/api/token",
+        "secret" => $container->get('settings')['secretKey'],
+        "secure" => false
+    ]));
+
     // e.g: $app->add(new \Slim\Csrf\Guard);
     $app->add(function ($req, $res, $next) {
         $response = $next($req, $res);

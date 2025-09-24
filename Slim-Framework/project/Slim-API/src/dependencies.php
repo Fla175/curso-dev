@@ -26,7 +26,7 @@ return function (App $app) {
     $container['db'] = function ($c) {
         $capsule = new Capsule;
         $dbSettings = $c->get('settings')['db'];
-        $capsule->addConnection([$dbSettings]);
+        $capsule->addConnection($dbSettings);
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
         return $capsule;

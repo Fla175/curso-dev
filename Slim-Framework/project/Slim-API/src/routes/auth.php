@@ -11,6 +11,7 @@ return function (App $app) {
     $container = $app->getContainer();
 
     // Rotas para auth (geração de token)
+    // Token gerado: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJJRCI6NCwibmFtZSI6Inh1eGEiLCJlbWFpbCI6Inh1eGEubG9jYUBldW1haWwuZ29nby5jb20iLCJwYXNzd29yZCI6IjgyYjAwNmI1NDExMjY3Y2JjMzk2YjU4Y2E2NDBhNzFkIn0.ibiu7u0N1pS1DpWuCdf7_KHi6uly8bjTwD-qCrU-kP8
     $app->post('/api/token', function($request, $response) {
 
         $data = $request->getParsedBody();
