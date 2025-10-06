@@ -1,0 +1,8 @@
+$fstg: forestgreen;
+
+@for $i from 1 through 3 {
+  .item-#{$i} {
+    background: lighten($fstg, 30%);
+    margin-bottom: 2px;
+  }
+}

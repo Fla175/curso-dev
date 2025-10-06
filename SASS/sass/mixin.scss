@@ -1,0 +1,173 @@
+// // Mixin
+// @mixin title($bg:wheat, $color:skyblue) {
+//     color: $color;
+//     background: $bg;
+//     padding: 10px 5px;
+// }
+// h1 {
+//     @include title(forestgreen, );
+// }
+
+// h2 {
+//     @include title(black);
+// }
+
+// h3 {
+//     @include title(red, goldenrod);
+// }
+
+// // Herança
+//     // Múltiplas diretivas
+// .class1 {
+//     color: red;
+// }
+
+// .class2 {
+//     background-color: black;
+// }
+
+// .red {
+//     @extend .class1;
+//     @extend .class2;
+// }
+
+//     // Encadeamento de diretivas
+//     .pai {
+//         color: red;
+//     }
+    
+//     .filho {
+//         @extend .pai;
+//         background-color: black;
+//     }
+
+//     .erro {
+//         @extend .filho;
+//         padding: 10px;
+//         border: solid 2px;
+//         border-color: red;
+//     }
+
+//     // Placeholders (%)
+//     %pai {
+//         color: red;
+//     }
+    
+//     %filho {
+//         @extend %pai;
+//         background-color: black;
+//     }
+
+//     .error {
+//         @extend %filho;
+//         padding: 10px;
+//         border: solid 2px;
+//         border-color: red;
+//     }
+
+//     // Diretivas de controle
+//     $blk: green;
+
+//     @if ($blk == green) {
+//         div {
+//             color: $blk;
+//         }
+//     } @else if ($blk == red) {
+//         div {
+//             color: $blk;
+//         }
+//     } @else {
+//         div {
+//         color: $blk;
+//         }
+//     }
+
+// Diretivas de Controle e Mixins
+    // Paletas
+        // Padrão
+        $whitebg: rgb(213, 213, 213);
+        $blueText: rgb(0, 122, 215);
+
+        // Natal
+        $redNatal: rgb(197, 54, 54);
+        $golden: rgb(255, 166, 0);
+
+        // Black Friday
+        $blackbg: rgb(15, 15, 15);
+        $darkbluebg: rgb(7, 0, 67);
+        $purplebg: rgb(24, 0, 45);
+        $purpleText: rgb(61, 0, 216);
+        
+        // Dia dos Namorados
+        $pinkInitial: rgb(255, 112, 112);
+        $pinkFinal: rgb(255, 100, 126);
+        $brownText: #85351e;
+
+
+@mixin theme ($theme: padrao) {
+    @if($theme == natal) {
+        body {
+            background: $redNatal;
+            color: $golden;
+        }
+    } @else if ($theme == blackFriday) {
+        body {
+        background-image: linear-gradient(135deg, $blackbg, $darkbluebg, $purplebg);
+        color: $purpleText;
+        }
+    } @else if ($theme == diaNamorados) {
+        body {
+        background-image: linear-gradient(135deg, $pinkInitial, $pinkFinal);
+        color: $brownText;
+        }
+    } @else {
+        body {
+        background: $whitebg;
+        color: $blueText;
+        }
+    }
+}
+
+@include theme(blackFriday);
+
+// Extracurricular: Card
+.cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap; // quebra em telas pequenas
+}
+
+.card {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+
+  background: rgba(255, 255, 255, 0.764); // branco transparente
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+
+  // garante que todos tenham a mesma altura visual
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    margin-top: 0;
+    color: #111; // título forte
+  }
+
+  p, li {
+    color: #333; // bom contraste
+    line-height: 1.4;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: #ddd; // só placeholder
+  }
+}
