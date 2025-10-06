@@ -1,0 +1,25 @@
+# IONIC
+
+## O que é o IONIC?
+
+IONIC Framework é um SDK (Softwares Kit of Development ou Kit de Desenvolvimento de Softwares), usado para desenvolver principalmente aplicativos mobile híbridos com JavaScript, CSS e HTML5.
+
+## Como Funciona o IONIC?
+
+Primeiramente vamos ver a diferença entre um app "híbrido" e um "nativo".
+
+- Híbrido:
+    Roda dentro de um celular, mas precisa de uma "web view" para renderizar o app, que acessa também os recursos nativos, o que o browser não consegue fazer.
+
+- Nativo:
+    Roda diretamente dentro do celular, sem uso de uma "web view".
+
+## OSs (Sistemas Operacionais) que suportam apps com IONIC
+
+- Android
+- IOS
+
+## Vantagens de Utilizar IONIC
+
+- Utilizar HTML5, CSS e JavaScript (ou seja, mais facilidade para desenvolvimento, pode ser por exemplo, um app inicial, para atender as primeiras necessidades, e após isso fazer o app nativo).
+- Produtividade (um único código para ambos Sistemas Operacionais, Android e IOS)
